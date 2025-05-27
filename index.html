@@ -26,6 +26,9 @@
             border-radius: 12px;
             padding: 30px;
             animation: fadeIn 1s ease-out;
+            display: flex; /* Flexbox für innere Elemente */
+            flex-direction: column; /* Vertikale Anordnung der Elemente */
+            align-items: center; /* Zentrierung horizontal */
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
@@ -53,6 +56,8 @@
             align-items: center;
             padding: 12px 15px;
             font-size: 1.25em;
+            width: 100%; /* Wichtig, damit es im Container Breite einnimmt */
+            box-sizing: border-box; /* Padding und Border werden in die Breite einbezogen */
         }
         .results-header {
             font-weight: bold;
@@ -68,6 +73,7 @@
             -ms-overflow-style: none; /* Versteckt den Scrollbalken für IE/Edge */
             border: 1px solid #ddd; /* Leichter Rand um die Liste */
             border-radius: 0 0 8px 8px;
+            width: 100%; /* Nimmt verfügbare Breite im Container ein */
         }
         .results-list::-webkit-scrollbar {
             display: none; /* Versteckt den Scrollbalken für Webkit-Browser */
@@ -116,6 +122,43 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* --- Neue Styles für Steuerelemente --- */
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column; /* Steuerelemente untereinander */
+            align-items: center; /* Horizontal zentrieren */
+            gap: 15px; /* Abstand zwischen den Steuerelementgruppen */
+            width: 100%;
+        }
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Abstand zwischen Label und Input/Checkbox */
+            width: 100%; /* Nimmt volle Breite der Controls ein */
+            justify-content: center; /* Inhalt zentrieren */
+        }
+        .control-group label {
+            font-size: 1.1em;
+            color: #2c3e50;
+            cursor: pointer;
+        }
+        .control-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            flex-shrink: 0; /* Verhindert, dass die Checkbox schrumpft */
+        }
+        .control-group input[type="text"] {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.1em;
+            width: 80%; /* Relative Breite im Container */
+            max-width: 300px; /* Maximale Breite, um nicht zu breit zu werden */
+            box-sizing: border-box; /* Padding und Border werden in die Breite einbezogen */
+        }
     </style>
 </head>
 <body>
@@ -130,6 +173,16 @@
             <div class="loading-spinner"></div>
             <p>Lade Ergebnisse...</p>
         </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <input type="checkbox" id="autoscrollToggle">
+                <label for="autoscrollToggle">Autoscroll aktivieren</label>
+            </div>
+            <div class="control-group">
+                <input type="text" id="duckSearch" placeholder="Entennummer suchen...">
+            </div>
+        </div>
     </div>
 
     <script>
@@ -143,9 +196,80 @@
         const SCROLL_AMOUNT = 1;    // Pixel pro Scroll-Schritt
 
         const resultsList = document.getElementById('results-list');
+        const autoscrollToggle = document.getElementById('autoscrollToggle'); // Referenz zur Checkbox
+        const duckSearchInput = document.getElementById('duckSearch'); // Referenz zum Suchfeld
+
         let currentScrollPosition = 0;
         let lastKnownResults = []; // Speichert die zuletzt geladenen Ergebnisse zum Vergleich
-        let scrollIntervalId; // Speichert die ID des Scroll-Intervals
+        let scrollIntervalId = null; // Speichert die ID des Scroll-Intervals, initial null
+        let isSearching = false; // Flag, um zu verfolgen, ob eine Suche aktiv ist
+
+        // Funktion zum Starten des Autoscrolls
+        function startAutoscroll() {
+            if (!scrollIntervalId) { // Nur starten, wenn nicht bereits aktiv
+                scrollIntervalId = setInterval(autoScroll, SCROLL_SPEED);
+                console.log("Autoscroll gestartet.");
+            }
+        }
+
+        // Funktion zum Stoppen des Autoscrolls
+        function stopAutoscroll() {
+            if (scrollIntervalId) { // Nur stoppen, wenn aktiv
+                clearInterval(scrollIntervalId);
+                scrollIntervalId = null; // ID zurücksetzen
+                console.log("Autoscroll gestoppt.");
+            }
+        }
+
+        // Autoscroll-Status beim Laden der Seite initialisieren
+        function initializeAutoscroll() {
+            // 'true' ist der Standard, falls noch nichts im localStorage gespeichert ist
+            const autoscrollEnabled = localStorage.getItem('autoscrollEnabled') !== 'false'; 
+            autoscrollToggle.checked = autoscrollEnabled; // Checkbox-Status setzen
+
+            if (autoscrollEnabled) {
+                startAutoscroll();
+            } else {
+                stopAutoscroll();
+            }
+        }
+
+        // Event-Listener für die Autoscroll-Checkbox
+        autoscrollToggle.addEventListener('change', () => {
+            if (autoscrollToggle.checked) {
+                startAutoscroll();
+                localStorage.setItem('autoscrollEnabled', 'true');
+            } else {
+                stopAutoscroll();
+                localStorage.setItem('autoscrollEnabled', 'false');
+            }
+        });
+
+        // Event-Listener für das Suchfeld
+        duckSearchInput.addEventListener('input', () => {
+            const searchTerm = duckSearchInput.value.trim().toLowerCase();
+            
+            if (searchTerm.length > 0) {
+                isSearching = true;
+                stopAutoscroll(); // Autoscroll stoppen, wenn gesucht wird
+                const filteredResults = lastKnownResults.filter(item => {
+                    // Suche in der Entennummer (als String behandeln)
+                    return String(item.entennummer).toLowerCase().includes(searchTerm);
+                });
+                updateResultsDisplay(filteredResults);
+            } else {
+                isSearching = false;
+                updateResultsDisplay(lastKnownResults); // Alle Ergebnisse anzeigen, wenn Suche gelöscht
+                // Autoscroll nur neu starten, wenn Checkbox aktiviert ist
+                if (autoscrollToggle.checked) {
+                    startAutoscroll();
+                }
+            }
+            // Scroll-Position zurücksetzen, um gefilterte/ungefilterte Ansicht oben zu zeigen
+            currentScrollPosition = 0;
+            resultsList.scrollTop = 0;
+        });
+
 
         async function fetchResults() {
             try {
@@ -158,14 +282,29 @@
                 // Prüfen, ob sich die Daten wirklich geändert haben, bevor aktualisiert wird
                 if (JSON.stringify(newResults) !== JSON.stringify(lastKnownResults)) {
                     console.log("Neue Ergebnisse gefunden, aktualisiere Anzeige...");
-                    updateResultsDisplay(newResults);
                     lastKnownResults = newResults; // Aktuelle Ergebnisse speichern
-                    // Nach dem Aktualisieren neu scrollen beginnen
-                    currentScrollPosition = 0;
-                    resultsList.scrollTop = 0;
-                    // scrollIntervalId kann hier neu gestartet werden, um sanften Übergang zu gewährleisten
-                    clearInterval(scrollIntervalId); 
-                    scrollIntervalId = setInterval(autoScroll, SCROLL_SPEED);
+                    
+                    // Nur aktualisieren, wenn keine Suche aktiv ist, sonst zeigt die Suche weiterhin die gefilterten Ergebnisse
+                    if (!isSearching) {
+                        updateResultsDisplay(newResults);
+                        // Nach dem Aktualisieren neu scrollen beginnen, wenn Autoscroll aktiviert ist
+                        currentScrollPosition = 0;
+                        resultsList.scrollTop = 0;
+                        if (autoscrollToggle.checked) {
+                            startAutoscroll(); // Startet den Autoscroll neu oder hält ihn am Laufen
+                        }
+                    } else {
+                        // Wenn gerade gesucht wird, aber neue Daten gekommen sind,
+                        // sollten wir die Suchergebnisse auf Basis der neuen Daten aktualisieren
+                        // ohne den Suchbegriff zu löschen.
+                        const searchTerm = duckSearchInput.value.trim().toLowerCase();
+                        const filteredResults = lastKnownResults.filter(item => {
+                            return String(item.entennummer).toLowerCase().includes(searchTerm);
+                        });
+                        updateResultsDisplay(filteredResults);
+                        // Autoscroll bleibt im Suchmodus gestoppt
+                    }
+                    
                 } else {
                     console.log("Ergebnisse unverändert.");
                 }
@@ -174,7 +313,7 @@
                 console.error("Fehler beim Abrufen der Ergebnisse:", error);
                 resultsList.innerHTML = '<p>Fehler beim Laden der Ergebnisse. Bitte versuchen Sie es später erneut.</p>';
                 // Bei Fehler stoppen wir auch das automatische Scrollen
-                clearInterval(scrollIntervalId);
+                stopAutoscroll();
             }
         }
 
@@ -188,7 +327,7 @@
             results.forEach(item => {
                 const resultItem = document.createElement('div');
                 resultItem.classList.add('result-item');
-                // HIER WURDE DIE KORREKTUR DER BACKTICKS VORGENOMMEN
+                // Sicherstellen, dass Backticks (`) für Template Literals verwendet werden
                 resultItem.innerHTML = `
                     <span class="platz">${item.platz}</span>
                     <span class="entennummer">${item.entennummer}</span>
@@ -198,25 +337,28 @@
         }
 
         function autoScroll() {
-            // Nur scrollen, wenn der Inhalt länger ist als der sichtbare Bereich
-            if (resultsList.scrollHeight > resultsList.clientHeight) {
+            // Nur scrollen, wenn Autoscroll aktiviert ist, keine Suche läuft und der Inhalt länger ist als der sichtbare Bereich
+            if (autoscrollToggle.checked && !isSearching && resultsList.scrollHeight > resultsList.clientHeight) {
                 currentScrollPosition += SCROLL_AMOUNT;
                 // Wenn das Ende erreicht oder überschritten wurde, springe zum Anfang zurück
                 if (currentScrollPosition >= (resultsList.scrollHeight - resultsList.clientHeight)) {
                     currentScrollPosition = 0; // Zurück zum Anfang
                 }
                 resultsList.scrollTop = currentScrollPosition;
+            } else if (!autoscrollToggle.checked || isSearching) {
+                // Wenn Autoscroll deaktiviert oder Suche aktiv ist, stoppe den Scroll-Intervall
+                stopAutoscroll();
             }
         }
 
         // Initialer Ladevorgang
         fetchResults();
 
-        // Automatische Aktualisierung der Ergebnisse
+        // Automatische Aktualisierung der Ergebnisse in einem festen Intervall
         setInterval(fetchResults, UPDATE_INTERVAL);
 
-        // Automatisches Scrollen der Liste
-        scrollIntervalId = setInterval(autoScroll, SCROLL_SPEED); // Startet das Scrollen direkt
+        // Initialisiert den Autoscroll-Status beim Laden der Seite basierend auf der letzten Einstellung
+        initializeAutoscroll();
     </script>
 </body>
 </html>
