@@ -7,7 +7,7 @@
     <style>
         /* --- Basis-Styles (Mobile-First Ansatz) --- */
         html {
-            font-size: 15px; /* Basis-Schriftgröße für rem-Einheiten auf kleinen Bildschirmen */
+            font-size: 13px; /* Basis-Schriftgröße für rem-Einheiten auf kleinen Bildschirmen */
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -373,9 +373,10 @@
             results.forEach(item => {
                 const resultItem = document.createElement('div');
                 resultItem.classList.add('result-item');
+                // KORRIGIERTE ZEILE: Sicherstellen, dass Backticks (`) für Template Literals verwendet werden
                 resultItem.innerHTML = `
-                    <span class="platz"><span class="math-inline">\{item\.platz\}</span\>
-<span class\="entennummer"\></span>{item.entennummer}</span>
+                    <span class="platz">${item.platz}</span>
+                    <span class="entennummer">${item.entennummer}</span>
                 `;
                 resultsList.appendChild(resultItem);
             });
@@ -400,3 +401,7 @@
         setInterval(fetchResults, UPDATE_INTERVAL);
 
         // Initialisiert den Autoscroll-Status beim Laden der Seite basierend auf der letzten Einstellung
+        initializeAutoscroll();
+    </script>
+</body>
+</html>
