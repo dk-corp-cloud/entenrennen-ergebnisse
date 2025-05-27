@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fürstenbrunner Entenrennen Ergebnisse</title>
+    <title>1. Fürstenbrunner Entenrennen Live Ergebnisse</title>
+    <link rel="icon" href="https://dk-corp-cloud.github.io/favicon.ico" type="image/x-icon">
     <style>
+        /* Import Google Fonts - passend zum Plakatstil */
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Poppins:wght@400;700&display=swap');
+        /* Fredoka ist verspielt wie die Enten-Schrift, Poppins für den Rest */
+
         /* --- Basis-Styles (Mobile-First Ansatz) --- */
         html {
-            font-size: 13px; /* Basis-Schriftgröße für rem-Einheiten auf kleinen Bildschirmen */
+            font-size: 15px; /* Basis-Schriftgröße für rem-Einheiten auf kleinen Bildschirmen */
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #FF8C00; /* Leuchtendes Orange */
+            font-family: 'Poppins', sans-serif; /* Poppins als Hauptschriftart */
+            background-color: #A7D9EE; /* Heller Blau-Ton als Grundfarbe und für den Bereich, den das Bild nicht abdeckt */
+            background-image: url('thumbnail_Enten.png'); /* Entenbild als Hintergrund */
+            background-size: contain; /* Bildgröße so, dass es im Container sichtbar ist */
+            background-position: bottom right; /* Positionierung unten rechts */
+            background-repeat: no-repeat; /* Verhindert Wiederholung des Bildes */
+            background-attachment: fixed; /* Fixiert das Hintergrundbild beim Scrollen */
             color: #2c3e50; /* Dunkles Grau-Blau für Text */
             margin: 0;
             display: flex;
@@ -25,32 +35,53 @@
             width: 95%; /* Etwas breiter auf kleinen Bildschirmen */
             max-width: 100%; /* Keine maximale Breite auf Mobile */
             background-color: #ffffff;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            border-radius: 12px;
-            padding: 20px; /* Etwas weniger Padding auf Mobile */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* Stärkerer Schatten */
+            border-radius: 20px; /* Abgerundeter, freundlicher */
+            padding: 25px; /* Etwas mehr Padding */
             animation: fadeIn 1s ease-out;
             display: flex;
             flex-direction: column;
             align-items: center;
             box-sizing: border-box; /* Sicherstellen, dass Padding in die Breite eingerechnet wird */
+            border: 5px solid #0056b3; /* Dunkelblau vom Plakat als Rahmen */
+            position: relative; /* Für absolute Positionierung des Logos später */
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
+            from { opacity: 0; transform: translateY(-30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- Überschriften Mobile --- */
+        /* --- Überschriften und Logo Container --- */
+        .header-content {
+            display: flex;
+            flex-direction: column; /* Standard auf Mobile: untereinander */
+            align-items: center;
+            margin-bottom: 25px;
+            width: 100%;
+        }
+
+        .logo {
+            width: 70px; /* Kleinere Größe für Mobile */
+            height: auto;
+            margin-bottom: 10px; /* Abstand zur Überschrift */
+        }
+
         h1 {
-            color: #FF8C00;
-            margin-bottom: 10px;
-            font-size: 2.2rem; /* Kleiner auf Mobile */
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            font-family: 'Fredoka', cursive; /* Verspielter für H1 */
+            color: #FF6F00; /* Etwas dunkleres Orange, passt zum Plakat-Rand */
+            margin-bottom: 5px;
+            font-size: 2.5rem; /* Kleiner auf Mobile */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Mehr Tiefe */
+            letter-spacing: 0.05em; /* Etwas mehr Abstand */
+            line-height: 1.1; /* Zeilenhöhe anpassen */
         }
         h2 {
-            color: #FF8C00;
+            font-family: 'Poppins', sans-serif;
+            color: #0056b3; /* Dunkelblau vom Plakat */
             margin-top: 0;
-            margin-bottom: 20px; /* Weniger Abstand auf Mobile, da Controls folgen */
-            font-size: 1.2rem; /* Kleiner auf Mobile */
+            margin-bottom: 0; /* Entfernt doppelten Abstand */
+            font-size: 1.3rem; /* Kleiner auf Mobile */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
         /* --- Ergebnisse Tabelle/Liste Mobile --- */
@@ -58,37 +89,40 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 10px; /* Weniger Padding auf Mobile */
-            font-size: 1rem; /* Basis-Fontgröße */
+            padding: 10px 15px; /* Etwas mehr Padding auf Mobile */
+            font-size: 1.1rem; /* Leicht größer */
             width: 100%;
             box-sizing: border-box;
+            border-radius: 8px; /* Für ein weicheres Aussehen */
         }
         .results-header {
             font-weight: bold;
-            background-color: #FF8C00;
+            background-color: #007bff; /* Mittelblau vom Plakat */
             color: #ffffff;
-            border-radius: 8px 8px 0 0;
+            border-radius: 12px 12px 0 0; /* Abgerundeter oben */
             margin-bottom: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .results-list {
-            max-height: 65vh;
+            max-height: 60vh; /* Etwas kleiner für mehr Platz */
             overflow-y: auto;
             scrollbar-width: none;
             -ms-overflow-style: none;
-            border: 1px solid #ddd;
-            border-radius: 0 0 8px 8px;
+            border: 2px solid #ddd; /* Etwas stärkerer Rahmen */
+            border-radius: 0 0 12px 12px; /* Abgerundet unten */
             width: 100%;
+            background-color: #f0f8ff; /* Sehr helles Blau */
         }
         .results-list::-webkit-scrollbar {
             display: none;
         }
         .result-item {
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #eee;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0; /* Hellere Linie */
             transition: background-color 0.3s ease;
         }
         .result-item:nth-child(even) {
-            background-color: #e9ecef;
+            background-color: #f8f8f8; /* Leicht abweichend */
         }
         .result-item:last-child {
             border-bottom: none;
@@ -96,31 +130,33 @@
         .platz {
             flex: 1;
             text-align: left;
-            padding-left: 5px; /* Weniger Padding auf Mobile */
+            padding-left: 10px; /* Mehr Padding */
             font-weight: bold;
             color: #34495e;
         }
         .entennummer {
             flex: 1;
-            text-align: right;
-            padding-right: 5px; /* Weniger Padding auf Mobile */
-            color: #2980b9;
+            text-align: center;
+            padding-right: 10px;
+            color: #FF6F00; /* Orange für Entennummern */
+            font-weight: bold;
         }
 
         /* --- Nachrichten und Ladeanzeige --- */
         #results-list p {
-            padding: 20px;
+            padding: 25px;
             color: #6c757d;
             font-style: italic;
+            font-size: 1.1rem;
         }
         .loading-spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-left-color: #FF8C00;
+            border: 5px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #007bff; /* Blau passend */
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 40px; /* Größer */
+            height: 40px; /* Größer */
             animation: spin 1s linear infinite;
-            margin: 20px auto;
+            margin: 30px auto; /* Mehr Abstand */
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
@@ -129,8 +165,8 @@
 
         /* --- Steuerelemente Mobile (angepasste Margins für neue Position) --- */
         .controls {
-            margin-top: 0; /* Kein Margin-top mehr, da es jetzt nach H2 kommt */
-            margin-bottom: 20px; /* Abstand zur Ergebnisliste */
+            margin-top: 0;
+            margin-bottom: 25px; /* Abstand zur Ergebnisliste */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -145,25 +181,31 @@
             justify-content: center;
         }
         .control-group label {
-            font-size: 1em;
+            font-size: 1.1em;
             color: #2c3e50;
             cursor: pointer;
         }
         .control-group input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
+            width: 22px; /* Leicht größer */
+            height: 22px; /* Leicht größer */
             cursor: pointer;
             flex-shrink: 0;
+            accent-color: #007bff; /* Blauer Haken */
         }
         .control-group input[type="text"] {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
+            padding: 10px 15px; /* Mehr Padding */
+            border: 2px solid #007bff; /* Blauer Rahmen */
+            border-radius: 10px; /* Weicher abgerundet */
+            font-size: 1.1em;
             width: 90%;
-            max-width: 300px;
+            max-width: 350px; /* Etwas breiter */
             box-sizing: border-box;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
         }
+        .control-group input[type="text"]::placeholder {
+            color: #6c757d;
+        }
+
 
         /* --- Media Queries für größere Bildschirme (Tablets, kleine Desktops) --- */
         @media (min-width: 768px) {
@@ -172,27 +214,43 @@
             }
             .container {
                 width: 90%;
-                max-width: 700px;
-                padding: 30px;
+                max-width: 750px; /* Etwas breiter */
+                padding: 40px;
             }
+
+            .header-content {
+                flex-direction: row; /* Nebeneinander auf größeren Screens */
+                justify-content: center;
+                align-items: flex-end; /* Überschriften und Logo unten ausgerichtet */
+            }
+
+            .logo {
+                width: 90px; /* Größere Größe für Tablets/Desktop */
+                margin-right: 20px; /* Abstand zur Überschrift */
+                margin-bottom: 0; /* Entfernt den unteren Abstand */
+            }
+
             h1 {
-                font-size: 2.8rem;
+                font-size: 3.2rem;
             }
             h2 {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
             .results-header, .result-item {
-                padding: 12px 15px;
-                font-size: 1.25rem;
+                padding: 15px 20px;
+                font-size: 1.35rem;
             }
-            .platz { padding-left: 10px; }
-            .entennummer { padding-right: 10px; }
+            .platz { padding-left: 15px; }
+            .entennummer { padding-right: 15px; }
+            .control-group {
+                flex-direction: row; /* nebeneinander auf größeren Screens */
+                gap: 20px;
+            }
             .control-group input[type="text"] {
-                width: 80%;
+                width: 60%;
             }
-            /* Margins für Controls auf größeren Bildschirmen */
             .controls {
-                margin-bottom: 25px; /* Mehr Abstand bei größeren Bildschirmen */
+                margin-bottom: 30px; /* Mehr Abstand bei größeren Bildschirmen */
             }
         }
 
@@ -202,26 +260,41 @@
                 font-size: 20px; /* Große Basis-Schriftgröße für TV */
             }
             .container {
-                max-width: 1000px; /* Noch breiter für TV */
-                padding: 40px; /* Mehr Padding für TV */
+                max-width: 1100px; /* Noch breiter für TV */
+                padding: 50px; /* Mehr Padding für TV */
             }
+
+            .logo {
+                width: 120px; /* Noch größere Größe für TV */
+                margin-right: 30px;
+            }
+
             h1 {
-                font-size: 3.5rem;
+                font-size: 4.5rem;
             }
             h2 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             .results-header, .result-item {
-                padding: 15px 20px;
-                font-size: 1.5rem;
+                padding: 20px 25px;
+                font-size: 1.7rem;
+            }
+            .loading-spinner {
+                width: 50px;
+                height: 50px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>1. Fürstenbrunner Entenrennen</h1>
-        <h2>Presented by SV U-Berg 04 - Live Ergebnisse</h2>
+        <div class="header-content">
+            <img src="SVU_transparent.png" alt="SV U-Berg 04 Logo" class="logo">
+            <div>
+                <h1>1. Fürstenbrunner Entenrennen</h1>
+                <h2>Presented by SV U-Berg 04 - Live Ergebnisse</h2>
+            </div>
+        </div>
         
         <div class="controls">
             <div class="control-group">
@@ -246,6 +319,7 @@
     <script>
         // *******************************************************************
         // WICHTIG: ERSETZE DIES MIT DEINER WEB-APP-URL VON SCHRITT 2
+        // Diese URL muss aus deinem Google Apps Script Projekt stammen
         const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxBPtaMEqQEgAs6Z67tkFiAgk-IuzuvRaEBLTSdM3Xy4UUkvzw7NBOTWaZUrQJjvQcD/exec'; 
         // *******************************************************************
         
@@ -281,6 +355,7 @@
 
         // Autoscroll-Status beim Laden der Seite initialisieren
         function initializeAutoscroll() {
+            // Holt den gespeicherten Wert, Standard ist true (autoscroll aktiviert)
             const autoscrollEnabled = localStorage.getItem('autoscrollEnabled') !== 'false'; 
             autoscrollToggle.checked = autoscrollEnabled;
 
@@ -308,18 +383,19 @@
             
             if (searchTerm.length > 0) {
                 isSearching = true;
-                stopAutoscroll();
+                stopAutoscroll(); // Autoscroll stoppen, wenn gesucht wird
                 const filteredResults = lastKnownResults.filter(item => {
                     return String(item.entennummer).toLowerCase().includes(searchTerm);
                 });
                 updateResultsDisplay(filteredResults);
             } else {
                 isSearching = false;
-                updateResultsDisplay(lastKnownResults);
-                if (autoscrollToggle.checked) {
+                updateResultsDisplay(lastKnownResults); // Alle Ergebnisse wieder anzeigen
+                if (autoscrollToggle.checked) { // Autoscroll wieder starten, wenn aktiviert
                     startAutoscroll();
                 }
             }
+            // Immer an den Anfang scrollen bei Suchänderung
             currentScrollPosition = 0;
             resultsList.scrollTop = 0;
         });
@@ -333,18 +409,22 @@
                 }
                 const newResults = await response.json();
 
+                // Nur aktualisieren, wenn sich die Daten geändert haben
                 if (JSON.stringify(newResults) !== JSON.stringify(lastKnownResults)) {
                     console.log("Neue Ergebnisse gefunden, aktualisiere Anzeige...");
-                    lastKnownResults = newResults;
+                    lastKnownResults = newResults; // Speichern der neuen Ergebnisse
                     
+                    // Anzeige aktualisieren, abhängig davon, ob gerade gesucht wird
                     if (!isSearching) {
                         updateResultsDisplay(newResults);
+                        // Scrollposition zurücksetzen und ggf. Autoscroll starten
                         currentScrollPosition = 0;
                         resultsList.scrollTop = 0;
                         if (autoscrollToggle.checked) {
                             startAutoscroll();
                         }
                     } else {
+                        // Wenn gesucht wird, nur die aktuellen Suchergebnisse neu filtern und anzeigen
                         const searchTerm = duckSearchInput.value.trim().toLowerCase();
                         const filteredResults = lastKnownResults.filter(item => {
                             return String(item.entennummer).toLowerCase().includes(searchTerm);
@@ -359,12 +439,12 @@
             } catch (error) {
                 console.error("Fehler beim Abrufen der Ergebnisse:", error);
                 resultsList.innerHTML = '<p>Fehler beim Laden der Ergebnisse. Bitte versuchen Sie es später erneut.</p>';
-                stopAutoscroll();
+                stopAutoscroll(); // Autoscroll bei Fehlern stoppen
             }
         }
 
         function updateResultsDisplay(results) {
-            resultsList.innerHTML = '';
+            resultsList.innerHTML = ''; // Vorherige Ergebnisse leeren
             if (results.length === 0) {
                 resultsList.innerHTML = '<p>Noch keine Ergebnisse verfügbar.</p>';
                 return;
@@ -373,7 +453,7 @@
             results.forEach(item => {
                 const resultItem = document.createElement('div');
                 resultItem.classList.add('result-item');
-                // KORRIGIERTE ZEILE: Sicherstellen, dass Backticks (`) für Template Literals verwendet werden
+                // Korrigierte Zeile: Sicherstellen, dass ${} für JavaScript-Variablen innerhalb von Backticks (` `) verwendet wird
                 resultItem.innerHTML = `
                     <span class="platz">${item.platz}</span>
                     <span class="entennummer">${item.entennummer}</span>
@@ -383,25 +463,30 @@
         }
 
         function autoScroll() {
+            // Nur scrollen, wenn Autoscroll aktiviert ist, nicht gesucht wird und scrollbarer Inhalt vorhanden ist
             if (autoscrollToggle.checked && !isSearching && resultsList.scrollHeight > resultsList.clientHeight) {
                 currentScrollPosition += SCROLL_AMOUNT;
+                // Wenn das Ende erreicht ist, wieder nach oben scrollen
                 if (currentScrollPosition >= (resultsList.scrollHeight - resultsList.clientHeight)) {
-                    currentScrollPosition = 0;
+                    currentScrollPosition = 0; // Zurück zum Anfang
                 }
                 resultsList.scrollTop = currentScrollPosition;
             } else if (!autoscrollToggle.checked || isSearching) {
+                // Autoscroll stoppen, wenn Checkbox deaktiviert oder gesucht wird
                 stopAutoscroll();
             }
         }
 
-        // Initialer Ladevorgang
+        // --- Initialisierungen beim Laden der Seite ---
+        // Ruft die Ergebnisse beim ersten Laden ab
         fetchResults();
 
-        // Automatische Aktualisierung der Ergebnisse in einem festen Intervall
+        // Stellt das Intervall für die automatische Aktualisierung ein
         setInterval(fetchResults, UPDATE_INTERVAL);
 
-        // Initialisiert den Autoscroll-Status beim Laden der Seite basierend auf der letzten Einstellung
-        initializeAutoscroll();
+        // Ruft initializeAutoscroll auf, nachdem das DOM vollständig geladen ist
+        document.addEventListener('DOMContentLoaded', initializeAutoscroll);
+
     </script>
 </body>
 </html>
