@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1. Fürstenbrunner Entenrennen Live Ergebnisse</title>
-    <link rel="icon" href="https://dk-corp-cloud.github.io/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg" type="image/svg+xml"> 
     <style>
         /* Import Google Fonts - passend zum Plakatstil */
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Poppins:wght@400;700&display=swap');
@@ -12,7 +12,7 @@
 
         /* --- Basis-Styles (Mobile-First Ansatz) --- */
         html {
-            font-size: 15px; /* Basis-Schriftgröße für rem-Einheiten auf kleinen Bildschirmen */
+            font-size: 14px; /* Noch etwas kleinere Basis-Schriftgröße für rem-Einheiten auf sehr kleinen Bildschirmen */
         }
         body {
             font-family: 'Poppins', sans-serif; /* Poppins als Hauptschriftart */
@@ -51,7 +51,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- Überschriften und Logo Container --- */
+        /* --- Überschriften und Logo Container für Mobile (Standard) --- */
         .header-content {
             display: flex;
             flex-direction: column; /* Standard auf Mobile: untereinander */
@@ -61,7 +61,7 @@
         }
 
         .logo {
-            width: 70px; /* Kleinere Größe für Mobile */
+            width: 60px; /* Kleinere Größe für Mobile */
             height: auto;
             margin-bottom: 10px; /* Abstand zur Überschrift */
         }
@@ -70,7 +70,7 @@
             font-family: 'Fredoka', cursive; /* Verspielter für H1 */
             color: #FF6F00; /* Etwas dunkleres Orange, passt zum Plakat-Rand */
             margin-bottom: 5px;
-            font-size: 2.5rem; /* Kleiner auf Mobile */
+            font-size: 2.1rem; /* Noch kleiner auf Mobile */
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Mehr Tiefe */
             letter-spacing: 0.05em; /* Etwas mehr Abstand */
             line-height: 1.1; /* Zeilenhöhe anpassen */
@@ -80,7 +80,7 @@
             color: #0056b3; /* Dunkelblau vom Plakat */
             margin-top: 0;
             margin-bottom: 0; /* Entfernt doppelten Abstand */
-            font-size: 1.3rem; /* Kleiner auf Mobile */
+            font-size: 1.1rem; /* Noch kleiner auf Mobile */
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
@@ -235,6 +235,7 @@
             }
             h2 {
                 font-size: 1.6rem;
+                margin-left: 5px; /* Kleiner Abstand, wenn alles nebeneinander ist */
             }
             .results-header, .result-item {
                 padding: 15px 20px;
@@ -292,7 +293,7 @@
             <img src="SVU_transparent.png" alt="SV U-Berg 04 Logo" class="logo">
             <div>
                 <h1>1. Fürstenbrunner Entenrennen</h1>
-                <h2>Presented by SV U-Berg 04 - Live Ergebnisse</h2>
+                <h2>Presented by SV U-Berg 04 <br> Live Ergebnisse</h2>
             </div>
         </div>
         
