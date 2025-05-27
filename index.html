@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fürstenbrunner Entenrennen Ergebnisse</title>
     <style>
-        /* --- Grundlegende Styles --- */
+        /* --- Basis-Styles (Mobile-First Ansatz) --- */
+        html {
+            font-size: 15px; /* Basis-Schriftgröße für rem-Einheiten auf kleinen Bildschirmen */
+        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #FF8C00; /* Leuchtendes Orange */
@@ -19,72 +22,73 @@
             text-align: center;
         }
         .container {
-            width: 90%;
-            max-width: 700px; /* Etwas schmaler für Fokus */
+            width: 95%; /* Etwas breiter auf kleinen Bildschirmen */
+            max-width: 100%; /* Keine maximale Breite auf Mobile */
             background-color: #ffffff;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Etwas stärkerer Schatten */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             border-radius: 12px;
-            padding: 30px;
+            padding: 20px; /* Etwas weniger Padding auf Mobile */
             animation: fadeIn 1s ease-out;
-            display: flex; /* Flexbox für innere Elemente */
-            flex-direction: column; /* Vertikale Anordnung der Elemente */
-            align-items: center; /* Zentrierung horizontal */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box; /* Sicherstellen, dass Padding in die Breite eingerechnet wird */
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- Überschriften --- */
+        /* --- Überschriften Mobile --- */
         h1 {
-            color: #FF8C00; /* Orange für H1 */
+            color: #FF8C00;
             margin-bottom: 10px;
-            font-size: 2.8em;
+            font-size: 2.2rem; /* Kleiner auf Mobile */
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
         h2 {
-            color: #FF8C00; /* Orange für H2 */
+            color: #FF8C00;
             margin-top: 0;
-            margin-bottom: 25px;
-            font-size: 1.5em;
+            margin-bottom: 20px; /* Weniger Abstand auf Mobile, da Controls folgen */
+            font-size: 1.2rem; /* Kleiner auf Mobile */
         }
 
-        /* --- Ergebnisse Tabelle/Liste --- */
+        /* --- Ergebnisse Tabelle/Liste Mobile --- */
         .results-header, .result-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 15px;
-            font-size: 1.25em;
-            width: 100%; /* Wichtig, damit es im Container Breite einnimmt */
-            box-sizing: border-box; /* Padding und Border werden in die Breite einbezogen */
+            padding: 8px 10px; /* Weniger Padding auf Mobile */
+            font-size: 1rem; /* Basis-Fontgröße */
+            width: 100%;
+            box-sizing: border-box;
         }
         .results-header {
             font-weight: bold;
-            background-color: #FF8C00; /* Orange für Header */
+            background-color: #FF8C00;
             color: #ffffff;
             border-radius: 8px 8px 0 0;
             margin-bottom: 5px;
         }
         .results-list {
-            max-height: 65vh; /* Maximale Höhe für den scrollbaren Bereich */
-            overflow-y: auto; /* Aktiviert den Scrollbalken bei Bedarf */
-            scrollbar-width: none; /* Versteckt den Scrollbalken für Firefox */
-            -ms-overflow-style: none; /* Versteckt den Scrollbalken für IE/Edge */
-            border: 1px solid #ddd; /* Leichter Rand um die Liste */
+            max-height: 65vh;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            border: 1px solid #ddd;
             border-radius: 0 0 8px 8px;
-            width: 100%; /* Nimmt verfügbare Breite im Container ein */
+            width: 100%;
         }
         .results-list::-webkit-scrollbar {
-            display: none; /* Versteckt den Scrollbalken für Webkit-Browser */
+            display: none;
         }
         .result-item {
-            background-color: #f8f9fa; /* Heller Hintergrund für Einträge */
+            background-color: #f8f9fa;
             border-bottom: 1px solid #eee;
             transition: background-color 0.3s ease;
         }
         .result-item:nth-child(even) {
-            background-color: #e9ecef; /* Abwechselnde Zeilenfarbe */
+            background-color: #e9ecef;
         }
         .result-item:last-child {
             border-bottom: none;
@@ -92,14 +96,14 @@
         .platz {
             flex: 1;
             text-align: left;
-            padding-left: 10px;
+            padding-left: 5px; /* Weniger Padding auf Mobile */
             font-weight: bold;
             color: #34495e;
         }
         .entennummer {
             flex: 1;
             text-align: right;
-            padding-right: 10px;
+            padding-right: 5px; /* Weniger Padding auf Mobile */
             color: #2980b9;
         }
 
@@ -111,7 +115,7 @@
         }
         .loading-spinner {
             border: 4px solid rgba(0, 0, 0, 0.1);
-            border-left-color: #FF8C00; /* Orange für Spinner */
+            border-left-color: #FF8C00;
             border-radius: 50%;
             width: 30px;
             height: 30px;
@@ -123,24 +127,25 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* --- Neue Styles für Steuerelemente --- */
+        /* --- Steuerelemente Mobile (angepasste Margins für neue Position) --- */
         .controls {
-            margin-top: 20px;
+            margin-top: 0; /* Kein Margin-top mehr, da es jetzt nach H2 kommt */
+            margin-bottom: 20px; /* Abstand zur Ergebnisliste */
             display: flex;
-            flex-direction: column; /* Steuerelemente untereinander */
-            align-items: center; /* Horizontal zentrieren */
-            gap: 15px; /* Abstand zwischen den Steuerelementgruppen */
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
             width: 100%;
         }
         .control-group {
             display: flex;
             align-items: center;
-            gap: 10px; /* Abstand zwischen Label und Input/Checkbox */
-            width: 100%; /* Nimmt volle Breite der Controls ein */
-            justify-content: center; /* Inhalt zentrieren */
+            gap: 10px;
+            width: 100%;
+            justify-content: center;
         }
         .control-group label {
-            font-size: 1.1em;
+            font-size: 1em;
             color: #2c3e50;
             cursor: pointer;
         }
@@ -148,16 +153,68 @@
             width: 20px;
             height: 20px;
             cursor: pointer;
-            flex-shrink: 0; /* Verhindert, dass die Checkbox schrumpft */
+            flex-shrink: 0;
         }
         .control-group input[type="text"] {
-            padding: 10px 15px;
+            padding: 8px 12px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            font-size: 1.1em;
-            width: 80%; /* Relative Breite im Container */
-            max-width: 300px; /* Maximale Breite, um nicht zu breit zu werden */
-            box-sizing: border-box; /* Padding und Border werden in die Breite einbezogen */
+            font-size: 1em;
+            width: 90%;
+            max-width: 300px;
+            box-sizing: border-box;
+        }
+
+        /* --- Media Queries für größere Bildschirme (Tablets, kleine Desktops) --- */
+        @media (min-width: 768px) {
+            html {
+                font-size: 16px; /* Basis-Schriftgröße für Tablets */
+            }
+            .container {
+                width: 90%;
+                max-width: 700px;
+                padding: 30px;
+            }
+            h1 {
+                font-size: 2.8rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .results-header, .result-item {
+                padding: 12px 15px;
+                font-size: 1.25rem;
+            }
+            .platz { padding-left: 10px; }
+            .entennummer { padding-right: 10px; }
+            .control-group input[type="text"] {
+                width: 80%;
+            }
+            /* Margins für Controls auf größeren Bildschirmen */
+            .controls {
+                margin-bottom: 25px; /* Mehr Abstand bei größeren Bildschirmen */
+            }
+        }
+
+        /* --- Media Queries für sehr große Bildschirme (Desktops, Fernseher) --- */
+        @media (min-width: 1200px) {
+            html {
+                font-size: 20px; /* Große Basis-Schriftgröße für TV */
+            }
+            .container {
+                max-width: 1000px; /* Noch breiter für TV */
+                padding: 40px; /* Mehr Padding für TV */
+            }
+            h1 {
+                font-size: 3.5rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .results-header, .result-item {
+                padding: 15px 20px;
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -165,6 +222,17 @@
     <div class="container">
         <h1>1. Fürstenbrunner Entenrennen</h1>
         <h2>Presented by SV U-Berg 04 - Live Ergebnisse</h2>
+        
+        <div class="controls">
+            <div class="control-group">
+                <input type="text" id="duckSearch" placeholder="Entennummer suchen...">
+            </div>
+            <div class="control-group">
+                <input type="checkbox" id="autoscrollToggle">
+                <label for="autoscrollToggle">Autoscroll aktivieren</label>
+            </div>
+        </div>
+
         <div class="results-header">
             <span class="platz">Platz</span>
             <span class="entennummer">Entennummer</span>
@@ -172,16 +240,6 @@
         <div id="results-list" class="results-list">
             <div class="loading-spinner"></div>
             <p>Lade Ergebnisse...</p>
-        </div>
-
-        <div class="controls">
-            <div class="control-group">
-                <input type="checkbox" id="autoscrollToggle">
-                <label for="autoscrollToggle">Autoscroll aktivieren</label>
-            </div>
-            <div class="control-group">
-                <input type="text" id="duckSearch" placeholder="Entennummer suchen...">
-            </div>
         </div>
     </div>
 
@@ -196,17 +254,17 @@
         const SCROLL_AMOUNT = 1;    // Pixel pro Scroll-Schritt
 
         const resultsList = document.getElementById('results-list');
-        const autoscrollToggle = document.getElementById('autoscrollToggle'); // Referenz zur Checkbox
-        const duckSearchInput = document.getElementById('duckSearch'); // Referenz zum Suchfeld
+        const autoscrollToggle = document.getElementById('autoscrollToggle');
+        const duckSearchInput = document.getElementById('duckSearch');
 
         let currentScrollPosition = 0;
-        let lastKnownResults = []; // Speichert die zuletzt geladenen Ergebnisse zum Vergleich
-        let scrollIntervalId = null; // Speichert die ID des Scroll-Intervals, initial null
-        let isSearching = false; // Flag, um zu verfolgen, ob eine Suche aktiv ist
+        let lastKnownResults = [];
+        let scrollIntervalId = null;
+        let isSearching = false;
 
         // Funktion zum Starten des Autoscrolls
         function startAutoscroll() {
-            if (!scrollIntervalId) { // Nur starten, wenn nicht bereits aktiv
+            if (!scrollIntervalId) {
                 scrollIntervalId = setInterval(autoScroll, SCROLL_SPEED);
                 console.log("Autoscroll gestartet.");
             }
@@ -214,18 +272,17 @@
 
         // Funktion zum Stoppen des Autoscrolls
         function stopAutoscroll() {
-            if (scrollIntervalId) { // Nur stoppen, wenn aktiv
+            if (scrollIntervalId) {
                 clearInterval(scrollIntervalId);
-                scrollIntervalId = null; // ID zurücksetzen
+                scrollIntervalId = null;
                 console.log("Autoscroll gestoppt.");
             }
         }
 
         // Autoscroll-Status beim Laden der Seite initialisieren
         function initializeAutoscroll() {
-            // 'true' ist der Standard, falls noch nichts im localStorage gespeichert ist
             const autoscrollEnabled = localStorage.getItem('autoscrollEnabled') !== 'false'; 
-            autoscrollToggle.checked = autoscrollEnabled; // Checkbox-Status setzen
+            autoscrollToggle.checked = autoscrollEnabled;
 
             if (autoscrollEnabled) {
                 startAutoscroll();
@@ -251,21 +308,18 @@
             
             if (searchTerm.length > 0) {
                 isSearching = true;
-                stopAutoscroll(); // Autoscroll stoppen, wenn gesucht wird
+                stopAutoscroll();
                 const filteredResults = lastKnownResults.filter(item => {
-                    // Suche in der Entennummer (als String behandeln)
                     return String(item.entennummer).toLowerCase().includes(searchTerm);
                 });
                 updateResultsDisplay(filteredResults);
             } else {
                 isSearching = false;
-                updateResultsDisplay(lastKnownResults); // Alle Ergebnisse anzeigen, wenn Suche gelöscht
-                // Autoscroll nur neu starten, wenn Checkbox aktiviert ist
+                updateResultsDisplay(lastKnownResults);
                 if (autoscrollToggle.checked) {
                     startAutoscroll();
                 }
             }
-            // Scroll-Position zurücksetzen, um gefilterte/ungefilterte Ansicht oben zu zeigen
             currentScrollPosition = 0;
             resultsList.scrollTop = 0;
         });
@@ -279,30 +333,23 @@
                 }
                 const newResults = await response.json();
 
-                // Prüfen, ob sich die Daten wirklich geändert haben, bevor aktualisiert wird
                 if (JSON.stringify(newResults) !== JSON.stringify(lastKnownResults)) {
                     console.log("Neue Ergebnisse gefunden, aktualisiere Anzeige...");
-                    lastKnownResults = newResults; // Aktuelle Ergebnisse speichern
+                    lastKnownResults = newResults;
                     
-                    // Nur aktualisieren, wenn keine Suche aktiv ist, sonst zeigt die Suche weiterhin die gefilterten Ergebnisse
                     if (!isSearching) {
                         updateResultsDisplay(newResults);
-                        // Nach dem Aktualisieren neu scrollen beginnen, wenn Autoscroll aktiviert ist
                         currentScrollPosition = 0;
                         resultsList.scrollTop = 0;
                         if (autoscrollToggle.checked) {
-                            startAutoscroll(); // Startet den Autoscroll neu oder hält ihn am Laufen
+                            startAutoscroll();
                         }
                     } else {
-                        // Wenn gerade gesucht wird, aber neue Daten gekommen sind,
-                        // sollten wir die Suchergebnisse auf Basis der neuen Daten aktualisieren
-                        // ohne den Suchbegriff zu löschen.
                         const searchTerm = duckSearchInput.value.trim().toLowerCase();
                         const filteredResults = lastKnownResults.filter(item => {
                             return String(item.entennummer).toLowerCase().includes(searchTerm);
                         });
                         updateResultsDisplay(filteredResults);
-                        // Autoscroll bleibt im Suchmodus gestoppt
                     }
                     
                 } else {
@@ -312,13 +359,12 @@
             } catch (error) {
                 console.error("Fehler beim Abrufen der Ergebnisse:", error);
                 resultsList.innerHTML = '<p>Fehler beim Laden der Ergebnisse. Bitte versuchen Sie es später erneut.</p>';
-                // Bei Fehler stoppen wir auch das automatische Scrollen
                 stopAutoscroll();
             }
         }
 
         function updateResultsDisplay(results) {
-            resultsList.innerHTML = ''; // Vorherige Ergebnisse leeren
+            resultsList.innerHTML = '';
             if (results.length === 0) {
                 resultsList.innerHTML = '<p>Noch keine Ergebnisse verfügbar.</p>';
                 return;
@@ -327,26 +373,22 @@
             results.forEach(item => {
                 const resultItem = document.createElement('div');
                 resultItem.classList.add('result-item');
-                // Sicherstellen, dass Backticks (`) für Template Literals verwendet werden
                 resultItem.innerHTML = `
-                    <span class="platz">${item.platz}</span>
-                    <span class="entennummer">${item.entennummer}</span>
+                    <span class="platz"><span class="math-inline">\{item\.platz\}</span\>
+<span class\="entennummer"\></span>{item.entennummer}</span>
                 `;
                 resultsList.appendChild(resultItem);
             });
         }
 
         function autoScroll() {
-            // Nur scrollen, wenn Autoscroll aktiviert ist, keine Suche läuft und der Inhalt länger ist als der sichtbare Bereich
             if (autoscrollToggle.checked && !isSearching && resultsList.scrollHeight > resultsList.clientHeight) {
                 currentScrollPosition += SCROLL_AMOUNT;
-                // Wenn das Ende erreicht oder überschritten wurde, springe zum Anfang zurück
                 if (currentScrollPosition >= (resultsList.scrollHeight - resultsList.clientHeight)) {
-                    currentScrollPosition = 0; // Zurück zum Anfang
+                    currentScrollPosition = 0;
                 }
                 resultsList.scrollTop = currentScrollPosition;
             } else if (!autoscrollToggle.checked || isSearching) {
-                // Wenn Autoscroll deaktiviert oder Suche aktiv ist, stoppe den Scroll-Intervall
                 stopAutoscroll();
             }
         }
@@ -358,7 +400,3 @@
         setInterval(fetchResults, UPDATE_INTERVAL);
 
         // Initialisiert den Autoscroll-Status beim Laden der Seite basierend auf der letzten Einstellung
-        initializeAutoscroll();
-    </script>
-</body>
-</html>
