@@ -56,21 +56,21 @@
             display: flex;
             flex-direction: column; /* Standard auf Mobile: untereinander */
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 15px; /* Etwas weniger Abstand auf Mobile */
             width: 100%;
         }
 
         .logo {
             width: 60px; /* Kleinere Größe für Mobile */
             height: auto;
-            margin-bottom: 10px; /* Abstand zur Überschrift */
+            margin-bottom: 8px; /* Abstand zur Überschrift reduziert */
             flex-shrink: 0; /* Verhindert, dass das Logo schrumpft */
         }
 
         h1 {
             font-family: 'Fredoka', cursive; /* Verspielter für H1 */
             color: #FF6F00; /* Etwas dunkleres Orange, passt zum Plakat-Rand */
-            margin-bottom: 5px;
+            margin-bottom: 3px; /* Abstand zu h2 reduziert */
             font-size: 2.1rem; /* Noch kleiner auf Mobile */
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Mehr Tiefe */
             letter-spacing: 0.05em; /* Etwas mehr Abstand */
@@ -182,7 +182,7 @@
             justify-content: center;
         }
         .control-group label {
-            font-size: 1.1em;
+            font-size: 0.9em; /* Schriftgröße für Checkbox-Label reduziert */
             color: #2c3e50;
             cursor: pointer;
         }
@@ -223,13 +223,14 @@
                 flex-direction: row; /* Logo und Textblock nebeneinander */
                 justify-content: center; /* Alles im Header zentrieren */
                 align-items: center; /* Vertikal zentriert */
-                text-align: left; /* Text im Header linksbündig */
+                margin-bottom: 30px; /* Mehr Abstand auf größeren Bildschirmen */
             }
 
             .header-text-block {
                 display: flex;
                 flex-direction: column; /* h1 und h2 untereinander */
-                align-items: flex-start; /* Text linksbündig */
+                align-items: flex-start; /* Text linksbündig zum Logo */
+                text-align: left; /* Überschriften linksbündig */
             }
 
             .logo {
@@ -240,13 +241,13 @@
 
             h1 {
                 font-size: 3.2rem;
-                margin-bottom: 0; /* Keine zusätzliche Marge, da h2 direkt folgt */
-                text-align: left; /* Überschrift linksbündig innerhalb des Blocks */
+                margin-bottom: 5px; /* Etwas mehr Abstand zu h2 auf großen Screens */
+                text-align: left; 
             }
             h2 {
                 font-size: 1.6rem;
-                margin-top: 0; /* Keine zusätzliche Marge oben */
-                text-align: left; /* Untertitel linksbündig innerhalb des Blocks */
+                margin-top: 0; 
+                text-align: left; 
             }
             .results-header, .result-item {
                 padding: 15px 20px;
@@ -258,6 +259,9 @@
                 flex-direction: row; /* nebeneinander auf größeren Screens */
                 gap: 20px;
             }
+            .control-group label {
+                font-size: 1.1em; /* Normale Schriftgröße für Checkbox-Label auf größeren Screens */
+            }
             .control-group input[type="text"] {
                 width: 60%;
             }
@@ -265,7 +269,7 @@
                 margin-bottom: 30px; /* Mehr Abstand bei größeren Bildschirmen */
             }
             .results-list {
-                max-height: 50vh; /* Etwas mehr Höhe für die Liste auf größeren Bildschirmen */
+                max-height: 55vh; /* Erhöhte Höhe für die Liste auf größeren Bildschirmen */
             }
         }
 
@@ -299,10 +303,18 @@
                 height: 50px;
             }
             .results-list {
-                max-height: 60vh; /* Noch mehr Höhe für die Liste auf sehr großen Bildschirmen */
+                max-height: 65vh; /* Noch mehr Höhe für die Liste auf sehr großen Bildschirmen */
             }
         }
     </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RX93DK8GS3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RX93DK8GS3');
+    </script>
 </head>
 <body>
     <div class="container">
