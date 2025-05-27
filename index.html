@@ -12,7 +12,7 @@
 
         /* --- Basis-Styles (Mobile-First Ansatz) --- */
         html {
-            font-size: 14px; /* Noch etwas kleinere Basis-Schriftgröße für rem-Einheiten auf sehr kleinen Bildschirmen */
+            font-size: 14px; /* Basis-Schriftgröße für rem-Einheiten auf sehr kleinen Bildschirmen */
         }
         body {
             font-family: 'Poppins', sans-serif; /* Poppins als Hauptschriftart */
@@ -44,7 +44,7 @@
             align-items: center;
             box-sizing: border-box; /* Sicherstellen, dass Padding in die Breite eingerechnet wird */
             border: 5px solid #0056b3; /* Dunkelblau vom Plakat als Rahmen */
-            position: relative; /* Für absolute Positionierung des Logos später */
+            position: relative; /* Für absolute Positionierung des Logos später, falls nötig */
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-30px); }
@@ -64,6 +64,7 @@
             width: 60px; /* Kleinere Größe für Mobile */
             height: auto;
             margin-bottom: 10px; /* Abstand zur Überschrift */
+            flex-shrink: 0; /* Verhindert, dass das Logo schrumpft */
         }
 
         h1 {
@@ -221,7 +222,7 @@
             .header-content {
                 flex-direction: row; /* Nebeneinander auf größeren Screens */
                 justify-content: center;
-                align-items: flex-end; /* Überschriften und Logo unten ausgerichtet */
+                align-items: center; /* Vertikal zentriert */
             }
 
             .logo {
@@ -232,10 +233,13 @@
 
             h1 {
                 font-size: 3.2rem;
+                margin-bottom: 0; /* Keine zusätzliche Marge, da h2 folgt */
             }
             h2 {
                 font-size: 1.6rem;
-                margin-left: 5px; /* Kleiner Abstand, wenn alles nebeneinander ist */
+                margin-left: 10px; /* Kleiner Abstand zur h1 */
+                margin-top: 0; /* Keine zusätzliche Marge oben */
+                text-align: left; /* Textausrichtung anpassen, falls nötig */
             }
             .results-header, .result-item {
                 padding: 15px 20px;
