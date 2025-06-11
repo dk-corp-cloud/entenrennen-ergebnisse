@@ -27,8 +27,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            overflow: hidden; /* Verhindert Scrollbalken durch den Autoscroll */
+            min-height: 100vh; 
+            /* HIER WICHTIG: 'overflow: hidden;' ENTFERNEN, damit die Seite scrollen kann */
+            overflow-y: auto; /* Erlaubt vertikales Scrollen des Bodys, falls nötig */
             text-align: center;
         }
         .container {
@@ -45,6 +46,10 @@
             box-sizing: border-box; /* Sicherstellen, dass Padding in die Breite eingerechnet wird */
             border: 5px solid #0056b3; /* Dunkelblau vom Plakat als Rahmen */
             position: relative; /* Für absolute Positionierung des Logos später, falls nötig */
+            
+            /* NEU: Max-Höhe für den Container, damit er auf den Bildschirm passt */
+            max-height: 95vh; /* Nimmt maximal 95% der Viewport-Höhe ein */
+            overflow: hidden; /* Der Container selbst soll nicht scrollen, sondern nur die Liste innen */
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-30px); }
@@ -58,6 +63,7 @@
             align-items: center;
             margin-bottom: 15px; /* Etwas weniger Abstand auf Mobile */
             width: 100%;
+            flex-shrink: 0; /* NEU: Verhindert Schrumpfen in Flex-Containern */
         }
 
         .logo {
@@ -103,10 +109,13 @@
             border-radius: 12px 12px 0 0; /* Abgerundeter oben */
             margin-bottom: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            flex-shrink: 0; /* NEU: Verhindert Schrumpfen in Flex-Containern */
         }
         .results-list {
-            max-height: 60vh; /* Etwas kleiner für mehr Platz auf Mobile */
-            overflow-y: auto;
+            /* max-height: 60vh; <-- DIESE ZEILE ENTFERNT */
+            flex-grow: 1; /* NEU: Lässt die Liste den restlichen Platz ausfüllen */
+            min-height: 0; /* NEU: Ermöglicht das Schrumpfen von flex-grow Elementen */
+            overflow-y: auto; /* Lässt NUR DIESE Liste intern scrollen */
             scrollbar-width: none;
             -ms-overflow-style: none;
             border: 2px solid #ddd; /* Etwas stärkerer Rahmen */
@@ -173,6 +182,7 @@
             align-items: center;
             gap: 15px;
             width: 100%;
+            flex-shrink: 0; /* NEU: Verhindert Schrumpfen in Flex-Containern */
         }
         .control-group {
             display: flex;
@@ -268,9 +278,7 @@
             .controls {
                 margin-bottom: 30px; /* Mehr Abstand bei größeren Bildschirmen */
             }
-            .results-list {
-                max-height: 55vh; /* Erhöhte Höhe für die Liste auf größeren Bildschirmen */
-            }
+            /* .results-list { max-height: 55vh; } <-- DIESE ZEILE ENTFERNT */
         }
 
         /* --- Media Queries für sehr große Bildschirme (Desktops, Fernseher) --- */
@@ -302,9 +310,7 @@
                 width: 50px;
                 height: 50px;
             }
-            .results-list {
-                max-height: 65vh; /* Noch mehr Höhe für die Liste auf sehr großen Bildschirmen */
-            }
+            /* .results-list { max-height: 65vh; } <-- DIESE ZEILE ENTFERNT */
         }
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-92M3E5F1DW"></script>
@@ -483,7 +489,6 @@
             results.forEach(item => {
                 const resultItem = document.createElement('div');
                 resultItem.classList.add('result-item');
-                // Korrigierte Zeile: Sicherstellen, dass ${} für JavaScript-Variablen innerhalb von Backticks (` `) verwendet wird
                 resultItem.innerHTML = `
                     <span class="platz">${item.platz}</span>
                     <span class="entennummer">${item.entennummer}</span>
