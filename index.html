@@ -28,7 +28,6 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh; 
-            /* HIER WICHTIG: 'overflow: hidden;' ENTFERNEN, damit die Seite scrollen kann */
             overflow-y: auto; /* Erlaubt vertikales Scrollen des Bodys, falls nötig */
             text-align: center;
         }
@@ -47,7 +46,6 @@
             border: 5px solid #0056b3; /* Dunkelblau vom Plakat als Rahmen */
             position: relative; /* Für absolute Positionierung des Logos später, falls nötig */
             
-            /* NEU: Max-Höhe für den Container, damit er auf den Bildschirm passt */
             max-height: 95vh; /* Nimmt maximal 95% der Viewport-Höhe ein */
             overflow: hidden; /* Der Container selbst soll nicht scrollen, sondern nur die Liste innen */
         }
@@ -59,18 +57,30 @@
         /* --- Überschriften und Logo Container für Mobile (Standard) --- */
         .header-content {
             display: flex;
-            flex-direction: column; /* Standard auf Mobile: untereinander */
-            align-items: center;
+            /* ÄNDERUNG FÜR MOBILE: Logo und Text nebeneinander */
+            flex-direction: row; /* JETZT: Reihe statt Spalte */
+            justify-content: center; /* NEU: Zentriert Inhalt horizontal */
+            align-items: center; /* NEU: Zentriert Inhalt vertikal */
             margin-bottom: 15px; /* Etwas weniger Abstand auf Mobile */
             width: 100%;
-            flex-shrink: 0; /* NEU: Verhindert Schrumpfen in Flex-Containern */
+            flex-shrink: 0; 
         }
 
         .logo {
             width: 60px; /* Kleinere Größe für Mobile */
             height: auto;
-            margin-bottom: 8px; /* Abstand zur Überschrift reduziert */
-            flex-shrink: 0; /* Verhindert, dass das Logo schrumpft */
+            /* ÄNDERUNG: Abstand zum Text nach rechts statt nach unten */
+            margin-bottom: 0; /* Entfernt den unteren Abstand */
+            margin-right: 10px; /* NEU: Abstand nach rechts */
+            flex-shrink: 0; 
+        }
+
+        /* NEU: Flex-Container für h1 und h2, um sie untereinander zu halten */
+        .header-text-block {
+            display: flex;
+            flex-direction: column; /* h1 und h2 untereinander */
+            align-items: flex-start; /* Text linksbündig */
+            text-align: left; /* Überschriften linksbündig */
         }
 
         h1 {
@@ -81,6 +91,7 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Mehr Tiefe */
             letter-spacing: 0.05em; /* Etwas mehr Abstand */
             line-height: 1.1; /* Zeilenhöhe anpassen */
+            /* text-align: center; <-- ENTFERNT, da vom parent .header-text-block überschrieben */
         }
         h2 {
             font-family: 'Poppins', sans-serif;
@@ -89,6 +100,7 @@
             margin-bottom: 0; /* Entfernt doppelten Abstand */
             font-size: 1.1rem; /* Noch kleiner auf Mobile */
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            /* text-align: center; <-- ENTFERNT, da vom parent .header-text-block überschrieben */
         }
 
         /* --- Ergebnisse Tabelle/Liste Mobile --- */
@@ -109,12 +121,11 @@
             border-radius: 12px 12px 0 0; /* Abgerundeter oben */
             margin-bottom: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            flex-shrink: 0; /* NEU: Verhindert Schrumpfen in Flex-Containern */
+            flex-shrink: 0; 
         }
         .results-list {
-            /* max-height: 60vh; <-- DIESE ZEILE ENTFERNT */
-            flex-grow: 1; /* NEU: Lässt die Liste den restlichen Platz ausfüllen */
-            min-height: 0; /* NEU: Ermöglicht das Schrumpfen von flex-grow Elementen */
+            flex-grow: 1; /* Lässt die Liste den restlichen Platz ausfüllen */
+            min-height: 0; /* Ermöglicht das Schrumpfen von flex-grow Elementen */
             overflow-y: auto; /* Lässt NUR DIESE Liste intern scrollen */
             scrollbar-width: none;
             -ms-overflow-style: none;
@@ -182,7 +193,7 @@
             align-items: center;
             gap: 15px;
             width: 100%;
-            flex-shrink: 0; /* NEU: Verhindert Schrumpfen in Flex-Containern */
+            flex-shrink: 0; 
         }
         .control-group {
             display: flex;
@@ -278,7 +289,6 @@
             .controls {
                 margin-bottom: 30px; /* Mehr Abstand bei größeren Bildschirmen */
             }
-            /* .results-list { max-height: 55vh; } <-- DIESE ZEILE ENTFERNT */
         }
 
         /* --- Media Queries für sehr große Bildschirme (Desktops, Fernseher) --- */
@@ -310,7 +320,6 @@
                 width: 50px;
                 height: 50px;
             }
-            /* .results-list { max-height: 65vh; } <-- DIESE ZEILE ENTFERNT */
         }
     </style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-92M3E5F1DW"></script>
