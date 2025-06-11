@@ -45,7 +45,7 @@
             box-sizing: border-box; /* Sicherstellen, dass Padding in die Breite eingerechnet wird */
             border: 5px solid #0056b3; /* Dunkelblau vom Plakat als Rahmen */
             position: relative; /* Für absolute Positionierung des Logos später, falls nötig */
-            
+            
             max-height: 95vh; /* Nimmt maximal 95% der Viewport-Höhe ein */
             overflow: hidden; /* Der Container selbst soll nicht scrollen, sondern nur die Liste innen */
         }
@@ -93,9 +93,10 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2); 
             letter-spacing: 0.03em; /* VERKLEINERT: Etwas weniger Abstand zwischen Buchstaben */
             line-height: 1.1; 
-            white-space: normal; /* GEÄNDERT: Erlaubt Zeilenumbruch */
-            overflow: visible; /* GEÄNDERT: Verhindert das Abschneiden */
-            text-overflow: clip; /* GEÄNDERT: Verhindert Auslassungspunkte */
+            /* Änderungen für h1 auf Mobile */
+            white-space: normal; /* Erlaubt Zeilenumbruch */
+            overflow: visible; /* Verhindert das Abschneiden */
+            text-overflow: clip; /* Verhindert Auslassungspunkte */
         }
         h2 {
             font-family: 'Poppins', sans-serif;
@@ -104,9 +105,10 @@
             margin-bottom: 0; 
             font-size: 0.9rem; /* VERKLEINERT: Noch kleiner auf Mobile */
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            white-space: normal; /* GEÄNDERT: Erlaubt Zeilenumbruch */
-            overflow: visible; /* GEÄNDERT: Verhindert das Abschneiden */
-            text-overflow: clip; /* GEÄNDERT: Verhindert Auslassungspunkte */
+            /* Änderungen für h2 auf Mobile */
+            white-space: normal; /* Erlaubt Zeilenumbruch */
+            overflow: visible; /* Verhindert das Abschneiden */
+            text-overflow: clip; /* Verhindert Auslassungspunkte */
         }
 
         /* --- Ergebnisse Tabelle/Liste Mobile --- */
@@ -217,7 +219,6 @@
             width: 20px; /* VERKLEINERT: Leicht kleiner */
             height: 20px; /* VERKLEINERT: Leicht kleiner */
             cursor: pointer;
-            flex-shrink: 0;
             accent-color: #007bff; 
         }
         .control-group input[type="text"] {
@@ -272,17 +273,17 @@
                 font-size: 3.2rem;
                 margin-bottom: 5px; 
                 text-align: left; 
-                white-space: normal; /* ZURÜCKGESETZT: Normaler Umbruch auf größeren Bildschirmen */
-                overflow: visible; /* ZURÜCKGESETZT */
-                text-overflow: clip; /* ZURÜCKGESETZT */
+                white-space: normal; /* Normaler Umbruch auf größeren Bildschirmen */
+                overflow: visible; /* Sichtbarer Text */
+                text-overflow: clip; /* Kein Clipping */
             }
             h2 {
                 font-size: 1.6rem;
                 margin-top: 0; 
                 text-align: left; 
-                white-space: normal; /* ZURÜCKGESETZT: Normaler Umbruch auf größeren Bildschirmen */
-                overflow: visible; /* ZURÜCKGESETZT */
-                text-overflow: clip; /* ZURÜCKGESETZT */
+                white-space: normal; /* Normaler Umbruch auf größeren Bildschirmen */
+                overflow: visible; /* Sichtbarer Text */
+                text-overflow: clip; /* Kein Clipping */
             }
             .results-header, .result-item {
                 padding: 15px 20px;
@@ -358,7 +359,7 @@
                 <h2>Presented by SV U-Berg 04 <br> Live Ergebnisse</h2>
             </div>
         </div>
-        
+        
         <div class="controls">
             <div class="control-group">
                 <input type="text" id="duckSearch" placeholder="Entennummer suchen...">
@@ -385,9 +386,9 @@
         // Diese URL muss aus deinem Google Apps Script Projekt stammen
         const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzmyqB2CczimaKEF5C7NBZ6DhRJNOfC_6PvPAZtTGQ4cPZP7RspuQYWh5BpsOKliPY/exec'; 
         // *******************************************************************
-        
+        
         const UPDATE_INTERVAL = 3000; // Aktualisierungsintervall in Millisekunden (z.B. 3 Sekunden)
-        const SCROLL_SPEED = 15;    // Scroll-Geschwindigkeit (niedriger = schneller scrollt es, in ms) - ANPASSUNG: von 10 auf 30 für langsameres Scrollen
+        const SCROLL_SPEED = 30;    // Scroll-Geschwindigkeit (niedriger = schneller scrollt es, in ms)
         const SCROLL_AMOUNT = 1;    // Pixel pro Scroll-Schritt
 
         const resultsList = document.getElementById('results-list');
@@ -443,7 +444,7 @@
         // Event-Listener für das Suchfeld
         duckSearchInput.addEventListener('input', () => {
             const searchTerm = duckSearchInput.value.trim().toLowerCase();
-            
+            
             if (searchTerm.length > 0) {
                 isSearching = true;
                 stopAutoscroll(); // Autoscroll stoppen, wenn gesucht wird
@@ -476,7 +477,7 @@
                 if (JSON.stringify(newResults) !== JSON.stringify(lastKnownResults)) {
                     console.log("Neue Ergebnisse gefunden, aktualisiere Anzeige...");
                     lastKnownResults = newResults; // Speichern der neuen Ergebnisse
-                    
+                    
                     // Anzeige aktualisieren, abhängig davon, ob gerade gesucht wird
                     if (!isSearching) {
                         updateResultsDisplay(newResults);
@@ -494,7 +495,7 @@
                         });
                         updateResultsDisplay(filteredResults);
                     }
-                    
+                    
                 } else {
                     console.log("Ergebnisse unverändert.");
                 }
