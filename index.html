@@ -57,50 +57,56 @@
         /* --- Überschriften und Logo Container für Mobile (Standard) --- */
         .header-content {
             display: flex;
-            /* ÄNDERUNG FÜR MOBILE: Logo und Text nebeneinander */
-            flex-direction: row; /* JETZT: Reihe statt Spalte */
-            justify-content: center; /* NEU: Zentriert Inhalt horizontal */
-            align-items: center; /* NEU: Zentriert Inhalt vertikal */
-            margin-bottom: 15px; /* Etwas weniger Abstand auf Mobile */
+            flex-direction: row; 
+            justify-content: center; 
+            align-items: center; 
+            margin-bottom: 10px; /* VERKLEINERT: Weniger Abstand nach unten */
             width: 100%;
             flex-shrink: 0; 
+            flex-wrap: wrap; /* ERGÄNZT: Erlaubt Umbruch, wenn nicht genug Platz ist */
         }
 
         .logo {
-            width: 60px; /* Kleinere Größe für Mobile */
+            width: 50px; /* VERKLEINERT: Noch kleiner für Mobile */
             height: auto;
-            /* ÄNDERUNG: Abstand zum Text nach rechts statt nach unten */
-            margin-bottom: 0; /* Entfernt den unteren Abstand */
-            margin-right: 10px; /* NEU: Abstand nach rechts */
+            margin-bottom: 0; 
+            margin-right: 8px; /* VERKLEINERT: Etwas weniger Abstand nach rechts */
             flex-shrink: 0; 
         }
 
-        /* NEU: Flex-Container für h1 und h2, um sie untereinander zu halten */
         .header-text-block {
             display: flex;
-            flex-direction: column; /* h1 und h2 untereinander */
-            align-items: flex-start; /* Text linksbündig */
-            text-align: left; /* Überschriften linksbündig */
+            flex-direction: column; 
+            align-items: flex-start; 
+            text-align: left; 
+            /* Min-Breite hinzufügen, um Umbrüche zu vermeiden, wenn das Logo daneben ist */
+            min-width: 150px; /* Beispielwert, kann angepasst werden */
+            flex-grow: 1; /* ERGÄNZT: Lässt den Textblock verfügbaren Platz einnehmen */
+            flex-shrink: 1; /* ERGÄNZT: Erlaubt dem Textblock zu schrumpfen */
         }
 
         h1 {
-            font-family: 'Fredoka', cursive; /* Verspielter für H1 */
-            color: #FF6F00; /* Etwas dunkleres Orange, passt zum Plakat-Rand */
-            margin-bottom: 3px; /* Abstand zu h2 reduziert */
-            font-size: 2.1rem; /* Noch kleiner auf Mobile */
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Mehr Tiefe */
-            letter-spacing: 0.05em; /* Etwas mehr Abstand */
-            line-height: 1.1; /* Zeilenhöhe anpassen */
-            /* text-align: center; <-- ENTFERNT, da vom parent .header-text-block überschrieben */
+            font-family: 'Fredoka', cursive; 
+            color: #FF6F00; 
+            margin-bottom: 0px; /* VERKLEINERT: Kein Abstand zu h2 */
+            font-size: 1.8rem; /* VERKLEINERT: Noch kleiner auf Mobile, um Umbruch zu vermeiden */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2); 
+            letter-spacing: 0.03em; /* VERKLEINERT: Etwas weniger Abstand zwischen Buchstaben */
+            line-height: 1.1; 
+            white-space: nowrap; /* ERGÄNZT: Verhindert Umbruch in H1, wenn möglich */
+            overflow: hidden; /* ERGÄNZT: Versteckt überlaufenden Text, wenn nowrap aktiv ist */
+            text-overflow: ellipsis; /* ERGÄNZT: Fügt Auslassungspunkte hinzu, wenn Text überläuft */
         }
         h2 {
             font-family: 'Poppins', sans-serif;
-            color: #0056b3; /* Dunkelblau vom Plakat */
+            color: #0056b3; 
             margin-top: 0;
-            margin-bottom: 0; /* Entfernt doppelten Abstand */
-            font-size: 1.1rem; /* Noch kleiner auf Mobile */
+            margin-bottom: 0; 
+            font-size: 0.9rem; /* VERKLEINERT: Noch kleiner auf Mobile */
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            /* text-align: center; <-- ENTFERNT, da vom parent .header-text-block überschrieben */
+            white-space: nowrap; /* ERGÄNZT: Verhindert Umbruch in H2, wenn möglich */
+            overflow: hidden; /* ERGÄNZT: Versteckt überlaufenden Text, wenn nowrap aktiv ist */
+            text-overflow: ellipsis; /* ERGÄNZT: Fügt Auslassungspunkte hinzu, wenn Text überläuft */
         }
 
         /* --- Ergebnisse Tabelle/Liste Mobile --- */
@@ -108,42 +114,42 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 15px; /* Etwas mehr Padding auf Mobile */
-            font-size: 1.1rem; /* Leicht größer */
+            padding: 10px 15px; 
+            font-size: 1.1rem; 
             width: 100%;
             box-sizing: border-box;
-            border-radius: 8px; /* Für ein weicheres Aussehen */
+            border-radius: 8px; 
         }
         .results-header {
             font-weight: bold;
-            background-color: #007bff; /* Mittelblau vom Plakat */
+            background-color: #007bff; 
             color: #ffffff;
-            border-radius: 12px 12px 0 0; /* Abgerundeter oben */
+            border-radius: 12px 12px 0 0; 
             margin-bottom: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             flex-shrink: 0; 
         }
         .results-list {
-            flex-grow: 1; /* Lässt die Liste den restlichen Platz ausfüllen */
-            min-height: 0; /* Ermöglicht das Schrumpfen von flex-grow Elementen */
-            overflow-y: auto; /* Lässt NUR DIESE Liste intern scrollen */
+            flex-grow: 1; 
+            min-height: 0; 
+            overflow-y: auto; 
             scrollbar-width: none;
             -ms-overflow-style: none;
-            border: 2px solid #ddd; /* Etwas stärkerer Rahmen */
-            border-radius: 0 0 12px 12px; /* Abgerundet unten */
+            border: 2px solid #ddd; 
+            border-radius: 0 0 12px 12px; 
             width: 100%;
-            background-color: #f0f8ff; /* Sehr helles Blau */
+            background-color: #f0f8ff; 
         }
         .results-list::-webkit-scrollbar {
             display: none;
         }
         .result-item {
             background-color: #ffffff;
-            border-bottom: 1px solid #e0e0e0; /* Hellere Linie */
+            border-bottom: 1px solid #e0e0e0; 
             transition: background-color 0.3s ease;
         }
         .result-item:nth-child(even) {
-            background-color: #f8f8f8; /* Leicht abweichend */
+            background-color: #f8f8f8; 
         }
         .result-item:last-child {
             border-bottom: none;
@@ -151,7 +157,7 @@
         .platz {
             flex: 1;
             text-align: left;
-            padding-left: 10px; /* Mehr Padding */
+            padding-left: 10px; 
             font-weight: bold;
             color: #34495e;
         }
@@ -159,7 +165,7 @@
             flex: 1;
             text-align: center;
             padding-right: 10px;
-            color: #FF6F00; /* Orange für Entennummern */
+            color: #FF6F00; 
             font-weight: bold;
         }
 
@@ -172,12 +178,12 @@
         }
         .loading-spinner {
             border: 5px solid rgba(0, 0, 0, 0.1);
-            border-left-color: #007bff; /* Blau passend */
+            border-left-color: #007bff; 
             border-radius: 50%;
-            width: 40px; /* Größer */
-            height: 40px; /* Größer */
+            width: 40px; 
+            height: 40px; 
             animation: spin 1s linear infinite;
-            margin: 30px auto; /* Mehr Abstand */
+            margin: 30px auto; 
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
@@ -186,41 +192,41 @@
 
         /* --- Steuerelemente Mobile (angepasste Margins für neue Position) --- */
         .controls {
-            margin-top: 0;
-            margin-bottom: 25px; /* Abstand zur Ergebnisliste */
+            margin-top: 15px; /* VERKLEINERT: Abstand nach oben */
+            margin-bottom: 20px; /* VERKLEINERT: Abstand zur Ergebnisliste */
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 10px; /* VERKLEINERT: Weniger Abstand zwischen den Kontrollelementen */
             width: 100%;
             flex-shrink: 0; 
         }
         .control-group {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px; /* VERKLEINERT: Weniger Abstand in der Gruppe */
             width: 100%;
             justify-content: center;
         }
         .control-group label {
-            font-size: 0.9em; /* Schriftgröße für Checkbox-Label reduziert */
+            font-size: 0.8em; /* VERKLEINERT: Schriftgröße für Checkbox-Label noch kleiner */
             color: #2c3e50;
             cursor: pointer;
         }
         .control-group input[type="checkbox"] {
-            width: 22px; /* Leicht größer */
-            height: 22px; /* Leicht größer */
+            width: 20px; /* VERKLEINERT: Leicht kleiner */
+            height: 20px; /* VERKLEINERT: Leicht kleiner */
             cursor: pointer;
             flex-shrink: 0;
-            accent-color: #007bff; /* Blauer Haken */
+            accent-color: #007bff; 
         }
         .control-group input[type="text"] {
-            padding: 10px 15px; /* Mehr Padding */
-            border: 2px solid #007bff; /* Blauer Rahmen */
-            border-radius: 10px; /* Weicher abgerundet */
-            font-size: 1.1em;
+            padding: 8px 12px; /* VERKLEINERT: Weniger Padding */
+            border: 2px solid #007bff; 
+            border-radius: 10px; 
+            font-size: 1.0em; /* VERKLEINERT: Etwas kleiner */
             width: 90%;
-            max-width: 350px; /* Etwas breiter */
+            max-width: 350px; 
             box-sizing: border-box;
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
         }
@@ -241,34 +247,42 @@
             }
 
             .header-content {
-                flex-direction: row; /* Logo und Textblock nebeneinander */
-                justify-content: center; /* Alles im Header zentrieren */
-                align-items: center; /* Vertikal zentriert */
-                margin-bottom: 30px; /* Mehr Abstand auf größeren Bildschirmen */
+                flex-direction: row; 
+                justify-content: center; 
+                align-items: center; 
+                margin-bottom: 30px; 
+                flex-wrap: nowrap; /* ERGÄNZT: Kein Umbruch mehr auf größeren Bildschirmen */
             }
 
             .header-text-block {
                 display: flex;
-                flex-direction: column; /* h1 und h2 untereinander */
-                align-items: flex-start; /* Text linksbündig zum Logo */
-                text-align: left; /* Überschriften linksbündig */
+                flex-direction: column; 
+                align-items: flex-start; 
+                text-align: left; 
+                min-width: auto; /* ZURÜCKGESETZT: Keine feste min-width auf großen Screens */
             }
 
             .logo {
-                width: 90px; /* Größere Größe für Tablets/Desktop */
-                margin-right: 20px; /* Abstand zur Überschrift */
-                margin-bottom: 0; /* Entfernt den unteren Abstand */
+                width: 90px; 
+                margin-right: 20px; 
+                margin-bottom: 0; 
             }
 
             h1 {
                 font-size: 3.2rem;
-                margin-bottom: 5px; /* Etwas mehr Abstand zu h2 auf großen Screens */
+                margin-bottom: 5px; 
                 text-align: left; 
+                white-space: normal; /* ZURÜCKGESETZT: Normaler Umbruch auf größeren Bildschirmen */
+                overflow: visible; /* ZURÜCKGESETZT */
+                text-overflow: clip; /* ZURÜCKGESETZT */
             }
             h2 {
                 font-size: 1.6rem;
                 margin-top: 0; 
                 text-align: left; 
+                white-space: normal; /* ZURÜCKGESETZT: Normaler Umbruch auf größeren Bildschirmen */
+                overflow: visible; /* ZURÜCKGESETZT */
+                text-overflow: clip; /* ZURÜCKGESETZT */
             }
             .results-header, .result-item {
                 padding: 15px 20px;
@@ -277,17 +291,18 @@
             .platz { padding-left: 15px; }
             .entennummer { padding-right: 15px; }
             .control-group {
-                flex-direction: row; /* nebeneinander auf größeren Screens */
+                flex-direction: row; 
                 gap: 20px;
             }
             .control-group label {
-                font-size: 1.1em; /* Normale Schriftgröße für Checkbox-Label auf größeren Screens */
+                font-size: 1.1em; 
             }
             .control-group input[type="text"] {
                 width: 60%;
             }
             .controls {
-                margin-bottom: 30px; /* Mehr Abstand bei größeren Bildschirmen */
+                margin-bottom: 30px; 
+                margin-top: 20px; /* MEHR ABSTAND */
             }
         }
 
@@ -319,6 +334,9 @@
             .loading-spinner {
                 width: 50px;
                 height: 50px;
+            }
+            .controls {
+                margin-top: 30px; /* MEHR ABSTAND FÜR TV */
             }
         }
     </style>
@@ -369,7 +387,7 @@
         // *******************************************************************
         
         const UPDATE_INTERVAL = 3000; // Aktualisierungsintervall in Millisekunden (z.B. 3 Sekunden)
-        const SCROLL_SPEED = 30;    // Scroll-Geschwindigkeit (niedriger = schneller scrollt es, in ms)
+        const SCROLL_SPEED = 10;    // Scroll-Geschwindigkeit (niedriger = schneller scrollt es, in ms)
         const SCROLL_AMOUNT = 1;    // Pixel pro Scroll-Schritt
 
         const resultsList = document.getElementById('results-list');
