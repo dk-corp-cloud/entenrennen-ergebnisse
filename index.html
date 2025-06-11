@@ -1,554 +1,554 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1. Fürstenbrunner Entenrennen Live Ergebnisse</title>
-    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg" type="image/svg+xml"> 
-    <style>
-        /* Import Google Fonts - passend zum Plakatstil */
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Poppins:wght@400;700&display=swap');
-        /* Fredoka ist verspielt wie die Enten-Schrift, Poppins für den Rest */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. Fürstenbrunner Entenrennen Live Ergebnisse</title>
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg" type="image/svg+xml"> 
+    <style>
+        /* Import Google Fonts - passend zum Plakatstil */
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Poppins:wght@400;700&display=swap');
+        /* Fredoka ist verspielt wie die Enten-Schrift, Poppins für den Rest */
 
-        /* --- Basis-Styles (Mobile-First Ansatz) --- */
-        html {
-            font-size: 14px; /* Basis-Schriftgröße für rem-Einheiten auf sehr kleinen Bildschirmen */
-        }
-        body {
-            font-family: 'Poppins', sans-serif; /* Poppins als Hauptschriftart */
-            background-color: #A7D9EE; /* Heller Blau-Ton als Grundfarbe und für den Bereich, den das Bild nicht abdeckt */
-            background-image: url('thumbnail_Enten.png'); /* Entenbild als Hintergrund */
-            background-size: contain; /* Bildgröße so, dass es im Container sichtbar ist */
-            background-position: bottom right; /* Positionierung unten rechts */
-            background-repeat: no-repeat; /* Verhindert Wiederholung des Bildes */
-            background-attachment: fixed; /* Fixiert das Hintergrundbild beim Scrollen */
-            color: #2c3e50; /* Dunkles Grau-Blau für Text */
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; 
-            overflow-y: auto; /* Erlaubt vertikales Scrollen des Bodys, falls nötig */
-            text-align: center;
-        }
-        .container {
-            width: 95%; /* Etwas breiter auf kleinen Bildschirmen */
-            max-width: 100%; /* Keine maximale Breite auf Mobile */
-            background-color: #ffffff;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* Stärkerer Schatten */
-            border-radius: 20px; /* Abgerundeter, freundlicher */
-            padding: 25px; /* Etwas mehr Padding */
-            animation: fadeIn 1s ease-out;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-sizing: border-box; /* Sicherstellen, dass Padding in die Breite eingerechnet wird */
-            border: 5px solid #0056b3; /* Dunkelblau vom Plakat als Rahmen */
-            position: relative; /* Für absolute Positionierung des Logos später, falls nötig */
-            
-            max-height: 95vh; /* Nimmt maximal 95% der Viewport-Höhe ein */
-            overflow: hidden; /* Der Container selbst soll nicht scrollen, sondern nur die Liste innen */
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        /* --- Basis-Styles (Mobile-First Ansatz) --- */
+        html {
+            font-size: 14px; /* Basis-Schriftgröße für rem-Einheiten auf sehr kleinen Bildschirmen */
+        }
+        body {
+            font-family: 'Poppins', sans-serif; /* Poppins als Hauptschriftart */
+            background-color: #A7D9EE; /* Heller Blau-Ton als Grundfarbe und für den Bereich, den das Bild nicht abdeckt */
+            background-image: url('thumbnail_Enten.png'); /* Entenbild als Hintergrund */
+            background-size: contain; /* Bildgröße so, dass es im Container sichtbar ist */
+            background-position: bottom right; /* Positionierung unten rechts */
+            background-repeat: no-repeat; /* Verhindert Wiederholung des Bildes */
+            background-attachment: fixed; /* Fixiert das Hintergrundbild beim Scrollen */
+            color: #2c3e50; /* Dunkles Grau-Blau für Text */
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; 
+            overflow-y: auto; /* Erlaubt vertikales Scrollen des Bodys, falls nötig */
+            text-align: center;
+        }
+        .container {
+            width: 95%; /* Etwas breiter auf kleinen Bildschirmen */
+            max-width: 100%; /* Keine maximale Breite auf Mobile */
+            background-color: #ffffff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* Stärkerer Schatten */
+            border-radius: 20px; /* Abgerundeter, freundlicher */
+            padding: 25px; /* Etwas mehr Padding */
+            animation: fadeIn 1s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box; /* Sicherstellen, dass Padding in die Breite eingerechnet wird */
+            border: 5px solid #0056b3; /* Dunkelblau vom Plakat als Rahmen */
+            position: relative; /* Für absolute Positionierung des Logos später, falls nötig */
+            
+            max-height: 95vh; /* Nimmt maximal 95% der Viewport-Höhe ein */
+            overflow: hidden; /* Der Container selbst soll nicht scrollen, sondern nur die Liste innen */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        /* --- Überschriften und Logo Container für Mobile (Standard) --- */
-        .header-content {
-            display: flex;
-            flex-direction: row; 
-            justify-content: center; 
-            align-items: center; 
-            margin-bottom: 10px; /* VERKLEINERT: Weniger Abstand nach unten */
-            width: 100%;
-            flex-shrink: 0; 
-            flex-wrap: wrap; /* ERGÄNZT: Erlaubt Umbruch, wenn nicht genug Platz ist */
-        }
+        /* --- Überschriften und Logo Container für Mobile (Standard) --- */
+        .header-content {
+            display: flex;
+            flex-direction: row; 
+            justify-content: center; 
+            align-items: center; 
+            margin-bottom: 10px; /* VERKLEINERT: Weniger Abstand nach unten */
+            width: 100%;
+            flex-shrink: 0; 
+            flex-wrap: wrap; /* ERGÄNZT: Erlaubt Umbruch, wenn nicht genug Platz ist */
+        }
 
-        .logo {
-            width: 50px; /* VERKLEINERT: Noch kleiner für Mobile */
-            height: auto;
-            margin-bottom: 0; 
-            margin-right: 8px; /* VERKLEINERT: Etwas weniger Abstand nach rechts */
-            flex-shrink: 0; 
-        }
+        .logo {
+            width: 50px; /* VERKLEINERT: Noch kleiner für Mobile */
+            height: auto;
+            margin-bottom: 0; 
+            margin-right: 8px; /* VERKLEINERT: Etwas weniger Abstand nach rechts */
+            flex-shrink: 0; 
+        }
 
-        .header-text-block {
-            display: flex;
-            flex-direction: column; 
-            align-items: flex-start; 
-            text-align: left; 
-            /* Min-Breite hinzufügen, um Umbrüche zu vermeiden, wenn das Logo daneben ist */
-            min-width: 150px; /* Beispielwert, kann angepasst werden */
-            flex-grow: 1; /* ERGÄNZT: Lässt den Textblock verfügbaren Platz einnehmen */
-            flex-shrink: 1; /* ERGÄNZT: Erlaubt dem Textblock zu schrumpfen */
-        }
+        .header-text-block {
+            display: flex;
+            flex-direction: column; 
+            align-items: flex-start; 
+            text-align: left; 
+            /* Min-Breite hinzufügen, um Umbrüche zu vermeiden, wenn das Logo daneben ist */
+            min-width: 150px; /* Beispielwert, kann angepasst werden */
+            flex-grow: 1; /* ERGÄNZT: Lässt den Textblock verfügbaren Platz einnehmen */
+            flex-shrink: 1; /* ERGÄNZT: Erlaubt dem Textblock zu schrumpfen */
+        }
 
-        h1 {
-            font-family: 'Fredoka', cursive; 
-            color: #FF6F00; 
-            margin-bottom: 0px; /* VERKLEINERT: Kein Abstand zu h2 */
-            font-size: 1.8rem; /* VERKLEINERT: Noch kleiner auf Mobile, um Umbruch zu vermeiden */
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2); 
-            letter-spacing: 0.03em; /* VERKLEINERT: Etwas weniger Abstand zwischen Buchstaben */
-            line-height: 1.1; 
-            white-space: nowrap; /* ERGÄNZT: Verhindert Umbruch in H1, wenn möglich */
-            overflow: hidden; /* ERGÄNZT: Versteckt überlaufenden Text, wenn nowrap aktiv ist */
-            text-overflow: ellipsis; /* ERGÄNZT: Fügt Auslassungspunkte hinzu, wenn Text überläuft */
-        }
-        h2 {
-            font-family: 'Poppins', sans-serif;
-            color: #0056b3; 
-            margin-top: 0;
-            margin-bottom: 0; 
-            font-size: 0.9rem; /* VERKLEINERT: Noch kleiner auf Mobile */
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            white-space: nowrap; /* ERGÄNZT: Verhindert Umbruch in H2, wenn möglich */
-            overflow: hidden; /* ERGÄNZT: Versteckt überlaufenden Text, wenn nowrap aktiv ist */
-            text-overflow: ellipsis; /* ERGÄNZT: Fügt Auslassungspunkte hinzu, wenn Text überläuft */
-        }
+        h1 {
+            font-family: 'Fredoka', cursive; 
+            color: #FF6F00; 
+            margin-bottom: 0px; /* VERKLEINERT: Kein Abstand zu h2 */
+            font-size: 1.8rem; /* VERKLEINERT: Noch kleiner auf Mobile, um Umbruch zu vermeiden */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2); 
+            letter-spacing: 0.03em; /* VERKLEINERT: Etwas weniger Abstand zwischen Buchstaben */
+            line-height: 1.1; 
+            white-space: normal; /* GEÄNDERT: Erlaubt Zeilenumbruch */
+            overflow: visible; /* GEÄNDERT: Verhindert das Abschneiden */
+            text-overflow: clip; /* GEÄNDERT: Verhindert Auslassungspunkte */
+        }
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            color: #0056b3; 
+            margin-top: 0;
+            margin-bottom: 0; 
+            font-size: 0.9rem; /* VERKLEINERT: Noch kleiner auf Mobile */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            white-space: normal; /* GEÄNDERT: Erlaubt Zeilenumbruch */
+            overflow: visible; /* GEÄNDERT: Verhindert das Abschneiden */
+            text-overflow: clip; /* GEÄNDERT: Verhindert Auslassungspunkte */
+        }
 
-        /* --- Ergebnisse Tabelle/Liste Mobile --- */
-        .results-header, .result-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 15px; 
-            font-size: 1.1rem; 
-            width: 100%;
-            box-sizing: border-box;
-            border-radius: 8px; 
-        }
-        .results-header {
-            font-weight: bold;
-            background-color: #007bff; 
-            color: #ffffff;
-            border-radius: 12px 12px 0 0; 
-            margin-bottom: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            flex-shrink: 0; 
-        }
-        .results-list {
-            flex-grow: 1; 
-            min-height: 0; 
-            overflow-y: auto; 
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            border: 2px solid #ddd; 
-            border-radius: 0 0 12px 12px; 
-            width: 100%;
-            background-color: #f0f8ff; 
-        }
-        .results-list::-webkit-scrollbar {
-            display: none;
-        }
-        .result-item {
-            background-color: #ffffff;
-            border-bottom: 1px solid #e0e0e0; 
-            transition: background-color 0.3s ease;
-        }
-        .result-item:nth-child(even) {
-            background-color: #f8f8f8; 
-        }
-        .result-item:last-child {
-            border-bottom: none;
-        }
-        .platz {
-            flex: 1;
-            text-align: left;
-            padding-left: 10px; 
-            font-weight: bold;
-            color: #34495e;
-        }
-        .entennummer {
-            flex: 1;
-            text-align: center;
-            padding-right: 10px;
-            color: #FF6F00; 
-            font-weight: bold;
-        }
+        /* --- Ergebnisse Tabelle/Liste Mobile --- */
+        .results-header, .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px; 
+            font-size: 1.1rem; 
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 8px; 
+        }
+        .results-header {
+            font-weight: bold;
+            background-color: #007bff; 
+            color: #ffffff;
+            border-radius: 12px 12px 0 0; 
+            margin-bottom: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            flex-shrink: 0; 
+        }
+        .results-list {
+            flex-grow: 1; 
+            min-height: 0; 
+            overflow-y: auto; 
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            border: 2px solid #ddd; 
+            border-radius: 0 0 12px 12px; 
+            width: 100%;
+            background-color: #f0f8ff; 
+        }
+        .results-list::-webkit-scrollbar {
+            display: none;
+        }
+        .result-item {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0; 
+            transition: background-color 0.3s ease;
+        }
+        .result-item:nth-child(even) {
+            background-color: #f8f8f8; 
+        }
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        .platz {
+            flex: 1;
+            text-align: left;
+            padding-left: 10px; 
+            font-weight: bold;
+            color: #34495e;
+        }
+        .entennummer {
+            flex: 1;
+            text-align: center;
+            padding-right: 10px;
+            color: #FF6F00; 
+            font-weight: bold;
+        }
 
-        /* --- Nachrichten und Ladeanzeige --- */
-        #results-list p {
-            padding: 25px;
-            color: #6c757d;
-            font-style: italic;
-            font-size: 1.1rem;
-        }
-        .loading-spinner {
-            border: 5px solid rgba(0, 0, 0, 0.1);
-            border-left-color: #007bff; 
-            border-radius: 50%;
-            width: 40px; 
-            height: 40px; 
-            animation: spin 1s linear infinite;
-            margin: 30px auto; 
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        /* --- Nachrichten und Ladeanzeige --- */
+        #results-list p {
+            padding: 25px;
+            color: #6c757d;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+        .loading-spinner {
+            border: 5px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #007bff; 
+            border-radius: 50%;
+            width: 40px; 
+            height: 40px; 
+            animation: spin 1s linear infinite;
+            margin: 30px auto; 
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-        /* --- Steuerelemente Mobile (angepasste Margins für neue Position) --- */
-        .controls {
-            margin-top: 15px; /* VERKLEINERT: Abstand nach oben */
-            margin-bottom: 20px; /* VERKLEINERT: Abstand zur Ergebnisliste */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px; /* VERKLEINERT: Weniger Abstand zwischen den Kontrollelementen */
-            width: 100%;
-            flex-shrink: 0; 
-        }
-        .control-group {
-            display: flex;
-            align-items: center;
-            gap: 8px; /* VERKLEINERT: Weniger Abstand in der Gruppe */
-            width: 100%;
-            justify-content: center;
-        }
-        .control-group label {
-            font-size: 0.8em; /* VERKLEINERT: Schriftgröße für Checkbox-Label noch kleiner */
-            color: #2c3e50;
-            cursor: pointer;
-        }
-        .control-group input[type="checkbox"] {
-            width: 20px; /* VERKLEINERT: Leicht kleiner */
-            height: 20px; /* VERKLEINERT: Leicht kleiner */
-            cursor: pointer;
-            flex-shrink: 0;
-            accent-color: #007bff; 
-        }
-        .control-group input[type="text"] {
-            padding: 8px 12px; /* VERKLEINERT: Weniger Padding */
-            border: 2px solid #007bff; 
-            border-radius: 10px; 
-            font-size: 1.0em; /* VERKLEINERT: Etwas kleiner */
-            width: 90%;
-            max-width: 350px; 
-            box-sizing: border-box;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-        }
-        .control-group input[type="text"]::placeholder {
-            color: #6c757d;
-        }
+        /* --- Steuerelemente Mobile (angepasste Margins für neue Position) --- */
+        .controls {
+            margin-top: 15px; /* VERKLEINERT: Abstand nach oben */
+            margin-bottom: 20px; /* VERKLEINERT: Abstand zur Ergebnisliste */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px; /* VERKLEINERT: Weniger Abstand zwischen den Kontrollelementen */
+            width: 100%;
+            flex-shrink: 0; 
+        }
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 8px; /* VERKLEINERT: Weniger Abstand in der Gruppe */
+            width: 100%;
+            justify-content: center;
+        }
+        .control-group label {
+            font-size: 0.8em; /* VERKLEINERT: Schriftgröße für Checkbox-Label noch kleiner */
+            color: #2c3e50;
+            cursor: pointer;
+        }
+        .control-group input[type="checkbox"] {
+            width: 20px; /* VERKLEINERT: Leicht kleiner */
+            height: 20px; /* VERKLEINERT: Leicht kleiner */
+            cursor: pointer;
+            flex-shrink: 0;
+            accent-color: #007bff; 
+        }
+        .control-group input[type="text"] {
+            padding: 8px 12px; /* VERKLEINERT: Weniger Padding */
+            border: 2px solid #007bff; 
+            border-radius: 10px; 
+            font-size: 1.0em; /* VERKLEINERT: Etwas kleiner */
+            width: 90%;
+            max-width: 350px; 
+            box-sizing: border-box;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .control-group input[type="text"]::placeholder {
+            color: #6c757d;
+        }
 
 
-        /* --- Media Queries für größere Bildschirme (Tablets, kleine Desktops) --- */
-        @media (min-width: 768px) {
-            html {
-                font-size: 16px; /* Basis-Schriftgröße für Tablets */
-            }
-            .container {
-                width: 90%;
-                max-width: 750px; /* Etwas breiter */
-                padding: 40px;
-            }
+        /* --- Media Queries für größere Bildschirme (Tablets, kleine Desktops) --- */
+        @media (min-width: 768px) {
+            html {
+                font-size: 16px; /* Basis-Schriftgröße für Tablets */
+            }
+            .container {
+                width: 90%;
+                max-width: 750px; /* Etwas breiter */
+                padding: 40px;
+            }
 
-            .header-content {
-                flex-direction: row; 
-                justify-content: center; 
-                align-items: center; 
-                margin-bottom: 30px; 
-                flex-wrap: nowrap; /* ERGÄNZT: Kein Umbruch mehr auf größeren Bildschirmen */
-            }
+            .header-content {
+                flex-direction: row; 
+                justify-content: center; 
+                align-items: center; 
+                margin-bottom: 30px; 
+                flex-wrap: nowrap; /* ERGÄNZT: Kein Umbruch mehr auf größeren Bildschirmen */
+            }
 
-            .header-text-block {
-                display: flex;
-                flex-direction: column; 
-                align-items: flex-start; 
-                text-align: left; 
-                min-width: auto; /* ZURÜCKGESETZT: Keine feste min-width auf großen Screens */
-            }
+            .header-text-block {
+                display: flex;
+                flex-direction: column; 
+                align-items: flex-start; 
+                text-align: left; 
+                min-width: auto; /* ZURÜCKGESETZT: Keine feste min-width auf großen Screens */
+            }
 
-            .logo {
-                width: 90px; 
-                margin-right: 20px; 
-                margin-bottom: 0; 
-            }
+            .logo {
+                width: 90px; 
+                margin-right: 20px; 
+                margin-bottom: 0; 
+            }
 
-            h1 {
-                font-size: 3.2rem;
-                margin-bottom: 5px; 
-                text-align: left; 
-                white-space: normal; /* ZURÜCKGESETZT: Normaler Umbruch auf größeren Bildschirmen */
-                overflow: visible; /* ZURÜCKGESETZT */
-                text-overflow: clip; /* ZURÜCKGESETZT */
-            }
-            h2 {
-                font-size: 1.6rem;
-                margin-top: 0; 
-                text-align: left; 
-                white-space: normal; /* ZURÜCKGESETZT: Normaler Umbruch auf größeren Bildschirmen */
-                overflow: visible; /* ZURÜCKGESETZT */
-                text-overflow: clip; /* ZURÜCKGESETZT */
-            }
-            .results-header, .result-item {
-                padding: 15px 20px;
-                font-size: 1.35rem;
-            }
-            .platz { padding-left: 15px; }
-            .entennummer { padding-right: 15px; }
-            .control-group {
-                flex-direction: row; 
-                gap: 20px;
-            }
-            .control-group label {
-                font-size: 1.1em; 
-            }
-            .control-group input[type="text"] {
-                width: 60%;
-            }
-            .controls {
-                margin-bottom: 30px; 
-                margin-top: 20px; /* MEHR ABSTAND */
-            }
-        }
+            h1 {
+                font-size: 3.2rem;
+                margin-bottom: 5px; 
+                text-align: left; 
+                white-space: normal; /* ZURÜCKGESETZT: Normaler Umbruch auf größeren Bildschirmen */
+                overflow: visible; /* ZURÜCKGESETZT */
+                text-overflow: clip; /* ZURÜCKGESETZT */
+            }
+            h2 {
+                font-size: 1.6rem;
+                margin-top: 0; 
+                text-align: left; 
+                white-space: normal; /* ZURÜCKGESETZT: Normaler Umbruch auf größeren Bildschirmen */
+                overflow: visible; /* ZURÜCKGESETZT */
+                text-overflow: clip; /* ZURÜCKGESETZT */
+            }
+            .results-header, .result-item {
+                padding: 15px 20px;
+                font-size: 1.35rem;
+            }
+            .platz { padding-left: 15px; }
+            .entennummer { padding-right: 15px; }
+            .control-group {
+                flex-direction: row; 
+                gap: 20px;
+            }
+            .control-group label {
+                font-size: 1.1em; 
+            }
+            .control-group input[type="text"] {
+                width: 60%;
+            }
+            .controls {
+                margin-bottom: 30px; 
+                margin-top: 20px; /* MEHR ABSTAND */
+            }
+        }
 
-        /* --- Media Queries für sehr große Bildschirme (Desktops, Fernseher) --- */
-        @media (min-width: 1200px) {
-            html {
-                font-size: 20px; /* Große Basis-Schriftgröße für TV */
-            }
-            .container {
-                max-width: 1100px; /* Noch breiter für TV */
-                padding: 50px; /* Mehr Padding für TV */
-            }
+        /* --- Media Queries für sehr große Bildschirme (Desktops, Fernseher) --- */
+        @media (min-width: 1200px) {
+            html {
+                font-size: 20px; /* Große Basis-Schriftgröße für TV */
+            }
+            .container {
+                max-width: 1100px; /* Noch breiter für TV */
+                padding: 50px; /* Mehr Padding für TV */
+            }
 
-            .logo {
-                width: 120px; /* Noch größere Größe für TV */
-                margin-right: 30px;
-            }
+            .logo {
+                width: 120px; /* Noch größere Größe für TV */
+                margin-right: 30px;
+            }
 
-            h1 {
-                font-size: 4.5rem;
-            }
-            h2 {
-                font-size: 2rem;
-            }
-            .results-header, .result-item {
-                padding: 20px 25px;
-                font-size: 1.7rem;
-            }
-            .loading-spinner {
-                width: 50px;
-                height: 50px;
-            }
-            .controls {
-                margin-top: 30px; /* MEHR ABSTAND FÜR TV */
-            }
-        }
-    </style>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-92M3E5F1DW"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+            h1 {
+                font-size: 4.5rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            .results-header, .result-item {
+                padding: 20px 25px;
+                font-size: 1.7rem;
+            }
+            .loading-spinner {
+                width: 50px;
+                height: 50px;
+            }
+            .controls {
+                margin-top: 30px; /* MEHR ABSTAND FÜR TV */
+            }
+        }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-92M3E5F1DW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-      gtag('config', 'G-92M3E5F1DW');
-    </script>
+      gtag('config', 'G-92M3E5F1DW');
+    </script>
 </head>
 <body>
-    <div class="container">
-        <div class="header-content">
-            <img src="SVU_transparent.png" alt="SV U-Berg 04 Logo" class="logo">
-            <div class="header-text-block">
-                <h1>1. Fürstenbrunner Entenrennen</h1>
-                <h2>Presented by SV U-Berg 04 <br> Live Ergebnisse</h2>
-            </div>
-        </div>
-        
-        <div class="controls">
-            <div class="control-group">
-                <input type="text" id="duckSearch" placeholder="Entennummer suchen...">
-            </div>
-            <div class="control-group">
-                <input type="checkbox" id="autoscrollToggle">
-                <label for="autoscrollToggle">Autoscroll aktivieren</label>
-            </div>
-        </div>
+    <div class="container">
+        <div class="header-content">
+            <img src="SVU_transparent.png" alt="SV U-Berg 04 Logo" class="logo">
+            <div class="header-text-block">
+                <h1>1. Fürstenbrunner Entenrennen</h1>
+                <h2>Presented by SV U-Berg 04 <br> Live Ergebnisse</h2>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <input type="text" id="duckSearch" placeholder="Entennummer suchen...">
+            </div>
+            <div class="control-group">
+                <input type="checkbox" id="autoscrollToggle">
+                <label for="autoscrollToggle">Autoscroll aktivieren</label>
+            </div>
+        </div>
 
-        <div class="results-header">
-            <span class="platz">Platz</span>
-            <span class="entennummer">Entennummer</span>
-        </div>
-        <div id="results-list" class="results-list">
-            <div class="loading-spinner"></div>
-            <p>Lade Ergebnisse...</p>
-        </div>
-    </div>
+        <div class="results-header">
+            <span class="platz">Platz</span>
+            <span class="entennummer">Entennummer</span>
+        </div>
+        <div id="results-list" class="results-list">
+            <div class="loading-spinner"></div>
+            <p>Lade Ergebnisse...</p>
+        </div>
+    </div>
 
-    <script>
-        // *******************************************************************
-        // WICHTIG: ERSETZE DIES MIT DEINER WEB-APP-URL VON SCHRITT 2
-        // Diese URL muss aus deinem Google Apps Script Projekt stammen
-        const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzmyqB2CczimaKEF5C7NBZ6DhRJNOfC_6PvPAZtTGQ4cPZP7RspuQYWh5BpsOKliPY/exec'; 
-        // *******************************************************************
-        
-        const UPDATE_INTERVAL = 3000; // Aktualisierungsintervall in Millisekunden (z.B. 3 Sekunden)
-        const SCROLL_SPEED = 10;    // Scroll-Geschwindigkeit (niedriger = schneller scrollt es, in ms)
-        const SCROLL_AMOUNT = 1;    // Pixel pro Scroll-Schritt
+    <script>
+        // *******************************************************************
+        // WICHTIG: ERSETZE DIES MIT DEINER WEB-APP-URL VON SCHRITT 2
+        // Diese URL muss aus deinem Google Apps Script Projekt stammen
+        const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzmyqB2CczimaKEF5C7NBZ6DhRJNOfC_6PvPAZtTGQ4cPZP7RspuQYWh5BpsOKliPY/exec'; 
+        // *******************************************************************
+        
+        const UPDATE_INTERVAL = 3000; // Aktualisierungsintervall in Millisekunden (z.B. 3 Sekunden)
+        const SCROLL_SPEED = 15;    // Scroll-Geschwindigkeit (niedriger = schneller scrollt es, in ms) - ANPASSUNG: von 10 auf 30 für langsameres Scrollen
+        const SCROLL_AMOUNT = 1;    // Pixel pro Scroll-Schritt
 
-        const resultsList = document.getElementById('results-list');
-        const autoscrollToggle = document.getElementById('autoscrollToggle');
-        const duckSearchInput = document.getElementById('duckSearch');
+        const resultsList = document.getElementById('results-list');
+        const autoscrollToggle = document.getElementById('autoscrollToggle');
+        const duckSearchInput = document.getElementById('duckSearch');
 
-        let currentScrollPosition = 0;
-        let lastKnownResults = [];
-        let scrollIntervalId = null;
-        let isSearching = false;
+        let currentScrollPosition = 0;
+        let lastKnownResults = [];
+        let scrollIntervalId = null;
+        let isSearching = false;
 
-        // Funktion zum Starten des Autoscrolls
-        function startAutoscroll() {
-            if (!scrollIntervalId) {
-                scrollIntervalId = setInterval(autoScroll, SCROLL_SPEED);
-                console.log("Autoscroll gestartet.");
-            }
-        }
+        // Funktion zum Starten des Autoscrolls
+        function startAutoscroll() {
+            if (!scrollIntervalId) {
+                scrollIntervalId = setInterval(autoScroll, SCROLL_SPEED);
+                console.log("Autoscroll gestartet.");
+            }
+        }
 
-        // Funktion zum Stoppen des Autoscrolls
-        function stopAutoscroll() {
-            if (scrollIntervalId) {
-                clearInterval(scrollIntervalId);
-                scrollIntervalId = null;
-                console.log("Autoscroll gestoppt.");
-            }
-        }
+        // Funktion zum Stoppen des Autoscrolls
+        function stopAutoscroll() {
+            if (scrollIntervalId) {
+                clearInterval(scrollIntervalId);
+                scrollIntervalId = null;
+                console.log("Autoscroll gestoppt.");
+            }
+        }
 
-        // Autoscroll-Status beim Laden der Seite initialisieren
-        function initializeAutoscroll() {
-            // Holt den gespeicherten Wert, Standard ist true (autoscroll aktiviert)
-            const autoscrollEnabled = localStorage.getItem('autoscrollEnabled') !== 'false'; 
-            autoscrollToggle.checked = autoscrollEnabled;
+        // Autoscroll-Status beim Laden der Seite initialisieren
+        function initializeAutoscroll() {
+            // Holt den gespeicherten Wert, Standard ist true (autoscroll aktiviert)
+            const autoscrollEnabled = localStorage.getItem('autoscrollEnabled') !== 'false'; 
+            autoscrollToggle.checked = autoscrollEnabled;
 
-            if (autoscrollEnabled) {
-                startAutoscroll();
-            } else {
-                stopAutoscroll();
-            }
-        }
+            if (autoscrollEnabled) {
+                startAutoscroll();
+            } else {
+                stopAutoscroll();
+            }
+        }
 
-        // Event-Listener für die Autoscroll-Checkbox
-        autoscrollToggle.addEventListener('change', () => {
-            if (autoscrollToggle.checked) {
-                startAutoscroll();
-                localStorage.setItem('autoscrollEnabled', 'true');
-            } else {
-                stopAutoscroll();
-                localStorage.setItem('autoscrollEnabled', 'false');
-            }
-        });
+        // Event-Listener für die Autoscroll-Checkbox
+        autoscrollToggle.addEventListener('change', () => {
+            if (autoscrollToggle.checked) {
+                startAutoscroll();
+                localStorage.setItem('autoscrollEnabled', 'true');
+            } else {
+                stopAutoscroll();
+                localStorage.setItem('autoscrollEnabled', 'false');
+            }
+        });
 
-        // Event-Listener für das Suchfeld
-        duckSearchInput.addEventListener('input', () => {
-            const searchTerm = duckSearchInput.value.trim().toLowerCase();
-            
-            if (searchTerm.length > 0) {
-                isSearching = true;
-                stopAutoscroll(); // Autoscroll stoppen, wenn gesucht wird
-                const filteredResults = lastKnownResults.filter(item => {
-                    return String(item.entennummer).toLowerCase().includes(searchTerm);
-                });
-                updateResultsDisplay(filteredResults);
-            } else {
-                isSearching = false;
-                updateResultsDisplay(lastKnownResults); // Alle Ergebnisse wieder anzeigen
-                if (autoscrollToggle.checked) { // Autoscroll wieder starten, wenn aktiviert
-                    startAutoscroll();
-                }
-            }
-            // Immer an den Anfang scrollen bei Suchänderung
-            currentScrollPosition = 0;
-            resultsList.scrollTop = 0;
-        });
+        // Event-Listener für das Suchfeld
+        duckSearchInput.addEventListener('input', () => {
+            const searchTerm = duckSearchInput.value.trim().toLowerCase();
+            
+            if (searchTerm.length > 0) {
+                isSearching = true;
+                stopAutoscroll(); // Autoscroll stoppen, wenn gesucht wird
+                const filteredResults = lastKnownResults.filter(item => {
+                    return String(item.entennummer).toLowerCase().includes(searchTerm);
+                });
+                updateResultsDisplay(filteredResults);
+            } else {
+                isSearching = false;
+                updateResultsDisplay(lastKnownResults); // Alle Ergebnisse wieder anzeigen
+                if (autoscrollToggle.checked) { // Autoscroll wieder starten, wenn aktiviert
+                    startAutoscroll();
+                }
+            }
+            // Immer an den Anfang scrollen bei Suchänderung
+            currentScrollPosition = 0;
+            resultsList.scrollTop = 0;
+        });
 
 
-        async function fetchResults() {
-            try {
-                const response = await fetch(GOOGLE_SHEETS_WEB_APP_URL);
-                if (!response.ok) {
-                    throw new Error(`HTTP-Fehler! Status: ${response.status}`);
-                }
-                const newResults = await response.json();
+        async function fetchResults() {
+            try {
+                const response = await fetch(GOOGLE_SHEETS_WEB_APP_URL);
+                if (!response.ok) {
+                    throw new Error(`HTTP-Fehler! Status: ${response.status}`);
+                }
+                const newResults = await response.json();
 
-                // Nur aktualisieren, wenn sich die Daten geändert haben
-                if (JSON.stringify(newResults) !== JSON.stringify(lastKnownResults)) {
-                    console.log("Neue Ergebnisse gefunden, aktualisiere Anzeige...");
-                    lastKnownResults = newResults; // Speichern der neuen Ergebnisse
-                    
-                    // Anzeige aktualisieren, abhängig davon, ob gerade gesucht wird
-                    if (!isSearching) {
-                        updateResultsDisplay(newResults);
-                        // Scrollposition zurücksetzen und ggf. Autoscroll starten
-                        currentScrollPosition = 0;
-                        resultsList.scrollTop = 0;
-                        if (autoscrollToggle.checked) {
-                            startAutoscroll();
-                        }
-                    } else {
-                        // Wenn gesucht wird, nur die aktuellen Suchergebnisse neu filtern und anzeigen
-                        const searchTerm = duckSearchInput.value.trim().toLowerCase();
-                        const filteredResults = lastKnownResults.filter(item => {
-                            return String(item.entennummer).toLowerCase().includes(searchTerm);
-                        });
-                        updateResultsDisplay(filteredResults);
-                    }
-                    
-                } else {
-                    console.log("Ergebnisse unverändert.");
-                }
+                // Nur aktualisieren, wenn sich die Daten geändert haben
+                if (JSON.stringify(newResults) !== JSON.stringify(lastKnownResults)) {
+                    console.log("Neue Ergebnisse gefunden, aktualisiere Anzeige...");
+                    lastKnownResults = newResults; // Speichern der neuen Ergebnisse
+                    
+                    // Anzeige aktualisieren, abhängig davon, ob gerade gesucht wird
+                    if (!isSearching) {
+                        updateResultsDisplay(newResults);
+                        // Scrollposition zurücksetzen und ggf. Autoscroll starten
+                        currentScrollPosition = 0;
+                        resultsList.scrollTop = 0;
+                        if (autoscrollToggle.checked) {
+                            startAutoscroll();
+                        }
+                    } else {
+                        // Wenn gesucht wird, nur die aktuellen Suchergebnisse neu filtern und anzeigen
+                        const searchTerm = duckSearchInput.value.trim().toLowerCase();
+                        const filteredResults = lastKnownResults.filter(item => {
+                            return String(item.entennummer).toLowerCase().includes(searchTerm);
+                        });
+                        updateResultsDisplay(filteredResults);
+                    }
+                    
+                } else {
+                    console.log("Ergebnisse unverändert.");
+                }
 
-            } catch (error) {
-                console.error("Fehler beim Abrufen der Ergebnisse:", error);
-                resultsList.innerHTML = '<p>Fehler beim Laden der Ergebnisse. Bitte versuchen Sie es später erneut.</p>';
-                stopAutoscroll(); // Autoscroll bei Fehlern stoppen
-            }
-        }
+            } catch (error) {
+                console.error("Fehler beim Abrufen der Ergebnisse:", error);
+                resultsList.innerHTML = '<p>Fehler beim Laden der Ergebnisse. Bitte versuchen Sie es später erneut.</p>';
+                stopAutoscroll(); // Autoscroll bei Fehlern stoppen
+            }
+        }
 
-        function updateResultsDisplay(results) {
-            resultsList.innerHTML = ''; // Vorherige Ergebnisse leeren
-            if (results.length === 0) {
-                resultsList.innerHTML = '<p>Noch keine Ergebnisse verfügbar.</p>';
-                return;
-            }
+        function updateResultsDisplay(results) {
+            resultsList.innerHTML = ''; // Vorherige Ergebnisse leeren
+            if (results.length === 0) {
+                resultsList.innerHTML = '<p>Noch keine Ergebnisse verfügbar.</p>';
+                return;
+            }
 
-            results.forEach(item => {
-                const resultItem = document.createElement('div');
-                resultItem.classList.add('result-item');
-                resultItem.innerHTML = `
-                    <span class="platz">${item.platz}</span>
-                    <span class="entennummer">${item.entennummer}</span>
-                `;
-                resultsList.appendChild(resultItem);
-            });
-        }
+            results.forEach(item => {
+                const resultItem = document.createElement('div');
+                resultItem.classList.add('result-item');
+                resultItem.innerHTML = `
+                    <span class="platz">${item.platz}</span>
+                    <span class="entennummer">${item.entennummer}</span>
+                `;
+                resultsList.appendChild(resultItem);
+            });
+        }
 
-        function autoScroll() {
-            // Nur scrollen, wenn Autoscroll aktiviert ist, nicht gesucht wird und scrollbarer Inhalt vorhanden ist
-            if (autoscrollToggle.checked && !isSearching && resultsList.scrollHeight > resultsList.clientHeight) {
-                currentScrollPosition += SCROLL_AMOUNT;
-                // Wenn das Ende erreicht ist, wieder nach oben scrollen
-                if (currentScrollPosition >= (resultsList.scrollHeight - resultsList.clientHeight)) {
-                    currentScrollPosition = 0; // Zurück zum Anfang
-                }
-                resultsList.scrollTop = currentScrollPosition;
-            } else if (!autoscrollToggle.checked || isSearching) {
-                // Autoscroll stoppen, wenn Checkbox deaktiviert oder gesucht wird
-                stopAutoscroll();
-            }
-        }
+        function autoScroll() {
+            // Nur scrollen, wenn Autoscroll aktiviert ist, nicht gesucht wird und scrollbarer Inhalt vorhanden ist
+            if (autoscrollToggle.checked && !isSearching && resultsList.scrollHeight > resultsList.clientHeight) {
+                currentScrollPosition += SCROLL_AMOUNT;
+                // Wenn das Ende erreicht ist, wieder nach oben scrollen
+                if (currentScrollPosition >= (resultsList.scrollHeight - resultsList.clientHeight)) {
+                    currentScrollPosition = 0; // Zurück zum Anfang
+                }
+                resultsList.scrollTop = currentScrollPosition;
+            } else if (!autoscrollToggle.checked || isSearching) {
+                // Autoscroll stoppen, wenn Checkbox deaktiviert oder gesucht wird
+                stopAutoscroll();
+            }
+        }
 
-        // --- Initialisierungen beim Laden der Seite ---
-        // Ruft die Ergebnisse beim ersten Laden ab
-        fetchResults();
+        // --- Initialisierungen beim Laden der Seite ---
+        // Ruft die Ergebnisse beim ersten Laden ab
+        fetchResults();
 
-        // Stellt das Intervall für die automatische Aktualisierung ein
-        setInterval(fetchResults, UPDATE_INTERVAL);
+        // Stellt das Intervall für die automatische Aktualisierung ein
+        setInterval(fetchResults, UPDATE_INTERVAL);
 
-        // Ruft initializeAutoscroll auf, nachdem das DOM vollständig geladen ist
-        document.addEventListener('DOMContentLoaded', initializeAutoscroll);
+        // Ruft initializeAutoscroll auf, nachdem das DOM vollständig geladen ist
+        document.addEventListener('DOMContentLoaded', initializeAutoscroll);
 
-    </script>
+    </script>
 </body>
 </html>
